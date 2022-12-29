@@ -20,9 +20,10 @@ export class DxfViewer {
      *  have padding if auto-resize feature is used.
      * @param options Some options can be overridden if specified. See DxfViewer.DefaultOptions.
      */
-    constructor(domContainer, options = null) {
-        this.domContainer = domContainer
+    constructor(canvas, options = null) {
         this.options = Object.create(DxfViewer.DefaultOptions)
+        this.canvas = canvas
+        this.context = this.canvas.getContext("webgl", { premultipliedAlpha: false })
         if (options) {
             Object.assign(this.options, options)
         }
@@ -34,6 +35,8 @@ export class DxfViewer {
 
         try {
             this.renderer = new three.WebGLRenderer({
+                canvas: this.canvas,
+                context: this.context,
                 alpha: options.canvasAlpha,
                 premultipliedAlpha: options.canvasPremultipliedAlpha,
                 antialias: options.antialias,
@@ -61,26 +64,16 @@ export class DxfViewer {
 
         renderer.setClearColor(options.clearColor, options.clearAlpha)
 
-        if (options.autoResize) {
-            this.canvasWidth = domContainer.clientWidth
-            this.canvasHeight = domContainer.clientHeight
-            domContainer.style.position = "relative"
-        } else {
-            this.canvasWidth = options.canvasWidth
-            this.canvasHeight = options.canvasHeight
-            this.resizeObserver = null
-        }
+        this.canvasWidth = options.canvasWidth
+        this.canvasHeight = options.canvasHeight
+        this.resizeObserver = null
         renderer.setSize(this.canvasWidth, this.canvasHeight)
 
-        this.canvas = renderer.domElement
-        this.canvas.getContext("webgl", { premultipliedAlpha: false })
-        domContainer.style.display = "block"
         if (options.autoResize) {
             this.canvas.style.position = "absolute"
             this.resizeObserver = new ResizeObserver(entries => this._OnResize(entries[0]))
-            this.resizeObserver.observe(domContainer)
+            this.resizeObserver.observe(canvas)
         }
-        domContainer.appendChild(this.canvas)
 
         this.canvas.addEventListener("pointerdown", this._OnPointerEvent.bind(this))
         this.canvas.addEventListener("pointerup", this._OnPointerEvent.bind(this))
