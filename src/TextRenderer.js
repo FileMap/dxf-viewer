@@ -1,7 +1,5 @@
 import {DxfScene, Entity} from "./DxfScene"
-import {ShapePath} from "three/src/extras/core/ShapePath"
-import {ShapeUtils} from "three/src/extras/ShapeUtils"
-import {Matrix3, Vector2} from "three"
+import {ShapePath, ShapeUtils, Matrix3, Vector2} from "three"
 import {MTextFormatParser} from "./MTextFormatParser";
 
 /**

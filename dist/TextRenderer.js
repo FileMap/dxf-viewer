@@ -9,8 +9,6 @@ Object.defineProperty(exports, "TextRenderer", {
     }
 });
 var _dxfScene = require("./DxfScene");
-var _shapePath = require("three/src/extras/core/ShapePath");
-var _shapeUtils = require("three/src/extras/ShapeUtils");
 var _three = require("three");
 var _mtextFormatParser = require("./MTextFormatParser");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -627,13 +625,13 @@ TextRenderer.DefaultOptions = {
                         }
                     };
                     var shapePoints = shape.extractPoints(options.curveSubdivision);
-                    /* Ensure proper vertices winding. */ if (!_shapeUtils.ShapeUtils.isClockWise(shapePoints.shape)) {
+                    /* Ensure proper vertices winding. */ if (!_three.ShapeUtils.isClockWise(shapePoints.shape)) {
                         shapePoints.shape = shapePoints.shape.reverse();
                         var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                         try {
                             for(var _iterator = shapePoints.holes[Symbol.iterator](), _step1; !(_iteratorNormalCompletion = (_step1 = _iterator.next()).done); _iteratorNormalCompletion = true){
                                 var hole = _step1.value;
-                                if (_shapeUtils.ShapeUtils.isClockWise(hole)) {
+                                if (_three.ShapeUtils.isClockWise(hole)) {
                                     shapePoints.holes[h] = hole.reverse();
                                 }
                             }
@@ -652,7 +650,7 @@ TextRenderer.DefaultOptions = {
                             }
                         }
                     }
-                    /* This call also removes duplicated end vertices. */ var indices = _shapeUtils.ShapeUtils.triangulateShape(shapePoints.shape, shapePoints.holes);
+                    /* This call also removes duplicated end vertices. */ var indices = _three.ShapeUtils.triangulateShape(shapePoints.shape, shapePoints.holes);
                     var _this1 = _this;
                     var baseIdx = _this.vertices.length;
                     AddVertices(shapePoints.shape);
@@ -805,7 +803,7 @@ var Font = /*#__PURE__*/ function() {
                     return null;
                 }
                 var scale = this.scale;
-                var path = new _shapePath.ShapePath();
+                var path = new _three.ShapePath();
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
                     for(var _iterator = glyph.path.commands[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
