@@ -45,7 +45,7 @@ export type EventName = "loaded" | "cleared" | "destroyed" | "resized" | "pointe
     "pointerup" | "viewChanged" | "message"
 
 export declare class DxfViewer {
-    constructor(canvas: any, options: DxfViewerOptions | null)
+    constructor(canvas: any, options: Partial<DxfViewerOptions> | null)
     HasRenderer(): boolean
     GetCanvas(): any
     SetSize(width: number, height: number): void
