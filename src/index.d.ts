@@ -49,7 +49,7 @@ export declare class DxfViewer {
     HasRenderer(): boolean
     GetCanvas(): any
     SetSize(width: number, height: number): void
-    Load(params: DxfViewerLoadParams): Promise<void>
+    Load(params: Partial<DxfViewerLoadParams>): Promise<void>
     Render(): void
     GetLayers(): Iterable<LayerInfo>
     ShowLayer(name: string, show: boolean): void
