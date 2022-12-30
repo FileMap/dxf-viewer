@@ -1,4 +1,2 @@
-module.exports = {
-    DxfFetcher: require('./DxfFetcher'),
-    DxfViewer: require('./DxfViewer')
-}
+export {DxfFetcher} from './DxfFetcher';
+export {DxfViewer} from './DxfViewer';
