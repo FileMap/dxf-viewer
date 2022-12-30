@@ -64,8 +64,8 @@ export class DxfViewer {
 
         renderer.setClearColor(options.clearColor, options.clearAlpha)
 
-        this.canvasWidth = options.canvasWidth
-        this.canvasHeight = options.canvasHeight
+        // this.canvasWidth = options.canvasWidth
+        // this.canvasHeight = options.canvasHeight
         this.resizeObserver = null
         renderer.setSize(this.canvasWidth, this.canvasHeight)
 
