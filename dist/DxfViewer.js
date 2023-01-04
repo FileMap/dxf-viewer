@@ -750,7 +750,7 @@ var DxfViewer = /*#__PURE__*/ function() {
             key: "_Emit",
             value: function _Emit(eventName) {
                 var data = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null;
-                this.canvas.dispatchEvent(new CustomEvent(EVENT_NAME_PREFIX + eventName, {
+                this.canvas.dispatchEvent(new Event(EVENT_NAME_PREFIX + eventName, {
                     detail: data
                 }));
             }

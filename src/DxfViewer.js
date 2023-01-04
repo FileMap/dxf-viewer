@@ -386,7 +386,7 @@ export class DxfViewer {
     }
 
     _Emit(eventName, data = null) {
-        this.canvas.dispatchEvent(new CustomEvent(EVENT_NAME_PREFIX + eventName, { detail: data }))
+        this.canvas.dispatchEvent(new Event(EVENT_NAME_PREFIX + eventName, { detail: data }))
     }
 
     _Message(message, level = MessageLevel.INFO) {
