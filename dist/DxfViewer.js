@@ -263,7 +263,7 @@ var DxfViewer = /*#__PURE__*/ function() {
         this.canvasWidth = options.canvasWidth;
         this.canvasHeight = options.canvasHeight;
         this.resizeObserver = null;
-        renderer.setSize(this.canvasWidth, this.canvasHeight);
+        // renderer.setSize(this.canvasWidth, this.canvasHeight)
         if (options.autoResize) {
             this.canvas.style.position = "absolute";
             this.resizeObserver = new ResizeObserver(function(entries) {
