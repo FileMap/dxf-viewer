@@ -166,11 +166,23 @@ var DxfFetcher = /*#__PURE__*/ function() {
     _createClass(DxfFetcher, [
         {
             key: "Fetch",
-            value: /** @param progressCbk {Function} (phase, receivedSize, totalSize) */ function Fetch() {
+            value: /*TODO
+        const fetch = require('node-fetch');
+
+fetch(url)
+    .then(response => response.body)
+    .then(res => res.on('readable', () => {
+    let chunk;
+    while (null !== (chunk = res.read())) {
+        console.log(chunk.toString());
+    }
+}))
+.catch(err => console.log(err));
+    */ /** @param progressCbk {Function} (phase, receivedSize, totalSize) */ function Fetch() {
                 var progressCbk = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
                 var _this = this;
                 return _asyncToGenerator(function() {
-                    var response, totalSize, reader, receivedSize, buffer, decoder, _ref, done, value, parser;
+                    var response, totalSize, receivedSize, buffer, decoder, parser;
                     return __generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
@@ -181,43 +193,36 @@ var DxfFetcher = /*#__PURE__*/ function() {
                             case 1:
                                 response = _state.sent();
                                 totalSize = +response.headers.get("Content-Length");
-                                reader = response.body.getReader();
                                 receivedSize = 0;
                                 buffer = "";
                                 decoder = new TextDecoder("utf-8");
-                                _state.label = 2;
-                            case 2:
-                                if (!true) return [
-                                    3,
-                                    4
-                                ];
-                                return [
-                                    4,
-                                    reader.read()
-                                ];
-                            case 3:
-                                _ref = _state.sent(), done = _ref.done, value = _ref.value;
-                                if (done) {
+                                response.body.on("readable", function() {
+                                    var chunk;
+                                    while(null !== (chunk = res.read())){
+                                        buffer += decoder.decode(chunk, {
+                                            stream: true
+                                        });
+                                        receivedSize += chunk.length;
+                                        if (progressCbk !== null) {
+                                            progressCbk("fetch", receivedSize, totalSize);
+                                        }
+                                    }
                                     buffer += decoder.decode(new ArrayBuffer(0), {
                                         stream: false
                                     });
-                                    return [
-                                        3,
-                                        4
-                                    ];
-                                }
-                                buffer += decoder.decode(value, {
-                                    stream: true
                                 });
-                                receivedSize += value.length;
-                                if (progressCbk !== null) {
-                                    progressCbk("fetch", receivedSize, totalSize);
-                                }
-                                return [
-                                    3,
-                                    2
-                                ];
-                            case 4:
+                                // while(true) {
+                                //     const {done, value} = await reader.read()
+                                //     if (done) {
+                                //         buffer += decoder.decode(new ArrayBuffer(0), {stream: false})
+                                //         break
+                                //     }
+                                //     buffer += decoder.decode(value, {stream: true})
+                                //     receivedSize += value.length
+                                //     if (progressCbk !== null) {
+                                //         progressCbk("fetch", receivedSize, totalSize)
+                                //     }
+                                // }
                                 if (progressCbk !== null) {
                                     progressCbk("parse", 0, null);
                                 }
