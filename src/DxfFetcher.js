@@ -34,7 +34,7 @@ fetch(url)
 
         response.body.on('readable', () => {
             let chunk;
-            while (null !== (chunk = res.read())) {
+            while (null !== (chunk = response.body.read())) {
                 buffer += decoder.decode(chunk, {stream: true})
                 receivedSize += chunk.length
                 if (progressCbk !== null) {

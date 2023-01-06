@@ -198,7 +198,7 @@ fetch(url)
                                 decoder = new TextDecoder("utf-8");
                                 response.body.on("readable", function() {
                                     var chunk;
-                                    while(null !== (chunk = res.read())){
+                                    while(null !== (chunk = response.body.read())){
                                         buffer += decoder.decode(chunk, {
                                             stream: true
                                         });
