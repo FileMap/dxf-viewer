@@ -268,7 +268,7 @@ var DxfScene = /*#__PURE__*/ function() {
                     return __generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
-                                header = dxf.header == undefined ? {} : dxf.header;
+                                header = dxf.header || {};
                                 /* 0 - CCW, 1 - CW */ _this.angBase = header["$ANGBASE"] || 0;
                                 /* Zero angle direction, 0 is +X */ _this.angDir = header["$ANGDIR"] || 0;
                                 _this.pdMode = header["$PDMODE"] || 0;

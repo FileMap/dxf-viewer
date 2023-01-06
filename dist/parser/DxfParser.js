@@ -103,6 +103,7 @@ DxfParser.prototype.parseStream = function(stream, done) {
 DxfParser.prototype._parse = function(dxfString) {
     var scanner, curr, dxf = {}, lastHandle = 0;
     var dxfLinesArray = dxfString.split(/\r\n|\r|\n/g);
+    dxf.header = {};
     scanner = new _dxfArrayScanner.default(dxfLinesArray);
     if (!scanner.hasNext()) throw Error("Empty file");
     var self = this;

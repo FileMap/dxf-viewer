@@ -49,7 +49,7 @@ export class DxfScene {
      *  searched sequentially in each provided font.
      */
     async Build(dxf, fontFetchers) {
-        const header = dxf.header == undefined? {} : dxf.header;
+        const header = dxf.header || {}
         /* 0 - CCW, 1 - CW */
         this.angBase = header["$ANGBASE"] || 0
         /* Zero angle direction, 0 is +X */
