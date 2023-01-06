@@ -6,20 +6,6 @@ export class DxfFetcher {
         this.url = url
     }
 
-    /*TODO
-        const fetch = require('node-fetch');
-
-fetch(url)
-    .then(response => response.body)
-    .then(res => res.on('readable', () => {
-    let chunk;
-    while (null !== (chunk = res.read())) {
-        console.log(chunk.toString());
-    }
-}))
-.catch(err => console.log(err));
-    */
-
     /** @param progressCbk {Function} (phase, receivedSize, totalSize) */
     async Fetch(progressCbk = null) {
         const response = await fetch(this.url)
@@ -32,9 +18,9 @@ fetch(url)
         let buffer = ""
         let decoder = new TextDecoder("utf-8")
 
-        response.body.on('readable', () => {
+        response.body.on('readable', async () => {
             let chunk;
-            while (null !== (chunk = response.body.read())) {
+            while (null !== (chunk = await response.body.read())) {
                 buffer += decoder.decode(chunk, {stream: true})
                 receivedSize += chunk.length
                 if (progressCbk !== null) {
@@ -43,6 +29,14 @@ fetch(url)
             }
             buffer += decoder.decode(new ArrayBuffer(0), {stream: false})
         });
+
+        response.body.on('end', () => {
+            if (progressCbk !== null) {
+                progressCbk("parse", 0, null)
+            }
+            const parser = new DxfParser()
+            return parser.parseSync(buffer)
+        } )
 
 
         // while(true) {
@@ -58,10 +52,10 @@ fetch(url)
         //     }
         // }
 
-        if (progressCbk !== null) {
-            progressCbk("parse", 0, null)
-        }
-        const parser = new DxfParser()
-        return parser.parseSync(buffer)
+        // if (progressCbk !== null) {
+        //     progressCbk("parse", 0, null)
+        // }
+        // const parser = new DxfParser()
+        // return parser.parseSync(buffer)
     }
 }

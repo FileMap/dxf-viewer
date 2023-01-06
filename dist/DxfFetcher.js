@@ -166,23 +166,11 @@ var DxfFetcher = /*#__PURE__*/ function() {
     _createClass(DxfFetcher, [
         {
             key: "Fetch",
-            value: /*TODO
-        const fetch = require('node-fetch');
-
-fetch(url)
-    .then(response => response.body)
-    .then(res => res.on('readable', () => {
-    let chunk;
-    while (null !== (chunk = res.read())) {
-        console.log(chunk.toString());
-    }
-}))
-.catch(err => console.log(err));
-    */ /** @param progressCbk {Function} (phase, receivedSize, totalSize) */ function Fetch() {
+            value: /** @param progressCbk {Function} (phase, receivedSize, totalSize) */ function Fetch() {
                 var progressCbk = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
                 var _this = this;
                 return _asyncToGenerator(function() {
-                    var response, totalSize, receivedSize, buffer, decoder, parser;
+                    var response, totalSize, receivedSize, buffer, decoder;
                     return __generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
@@ -196,43 +184,73 @@ fetch(url)
                                 receivedSize = 0;
                                 buffer = "";
                                 decoder = new TextDecoder("utf-8");
-                                response.body.on("readable", function() {
-                                    var chunk;
-                                    while(null !== (chunk = response.body.read())){
-                                        buffer += decoder.decode(chunk, {
-                                            stream: true
-                                        });
-                                        receivedSize += chunk.length;
-                                        if (progressCbk !== null) {
-                                            progressCbk("fetch", receivedSize, totalSize);
+                                response.body.on("readable", /*#__PURE__*/ _asyncToGenerator(function() {
+                                    var chunk, _;
+                                    return __generator(this, function(_state) {
+                                        switch(_state.label){
+                                            case 0:
+                                                _ = null;
+                                                return [
+                                                    4,
+                                                    response.body.read()
+                                                ];
+                                            case 1:
+                                                if (!(_ !== (chunk = _state.sent()))) return [
+                                                    3,
+                                                    2
+                                                ];
+                                                {
+                                                    buffer += decoder.decode(chunk, {
+                                                        stream: true
+                                                    });
+                                                    receivedSize += chunk.length;
+                                                    if (progressCbk !== null) {
+                                                        progressCbk("fetch", receivedSize, totalSize);
+                                                    }
+                                                }
+                                                return [
+                                                    3,
+                                                    0
+                                                ];
+                                            case 2:
+                                                buffer += decoder.decode(new ArrayBuffer(0), {
+                                                    stream: false
+                                                });
+                                                return [
+                                                    2
+                                                ];
                                         }
-                                    }
-                                    buffer += decoder.decode(new ArrayBuffer(0), {
-                                        stream: false
                                     });
+                                }));
+                                response.body.on("end", function() {
+                                    if (progressCbk !== null) {
+                                        progressCbk("parse", 0, null);
+                                    }
+                                    var parser = new _dxfParser.default();
+                                    return parser.parseSync(buffer);
                                 });
-                                // while(true) {
-                                //     const {done, value} = await reader.read()
-                                //     if (done) {
-                                //         buffer += decoder.decode(new ArrayBuffer(0), {stream: false})
-                                //         break
-                                //     }
-                                //     buffer += decoder.decode(value, {stream: true})
-                                //     receivedSize += value.length
-                                //     if (progressCbk !== null) {
-                                //         progressCbk("fetch", receivedSize, totalSize)
-                                //     }
-                                // }
-                                if (progressCbk !== null) {
-                                    progressCbk("parse", 0, null);
-                                }
-                                parser = new _dxfParser.default();
                                 return [
-                                    2,
-                                    parser.parseSync(buffer)
+                                    2
                                 ];
                         }
                     });
+                // while(true) {
+                //     const {done, value} = await reader.read()
+                //     if (done) {
+                //         buffer += decoder.decode(new ArrayBuffer(0), {stream: false})
+                //         break
+                //     }
+                //     buffer += decoder.decode(value, {stream: true})
+                //     receivedSize += value.length
+                //     if (progressCbk !== null) {
+                //         progressCbk("fetch", receivedSize, totalSize)
+                //     }
+                // }
+                // if (progressCbk !== null) {
+                //     progressCbk("parse", 0, null)
+                // }
+                // const parser = new DxfParser()
+                // return parser.parseSync(buffer)
                 })();
             }
         }
