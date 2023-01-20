@@ -863,7 +863,7 @@ var DxfViewer = /*#__PURE__*/ function() {
                     fragmentShader: shaders.fragment,
                     depthTest: false,
                     depthWrite: false,
-                    glslVersion: _three.GLSL3,
+                    glslVersion: _three.GLSL1,
                     side: _three.DoubleSide
                 });
             }
@@ -919,7 +919,7 @@ var DxfViewer = /*#__PURE__*/ function() {
                     fragmentShader: shaders.fragment,
                     depthTest: false,
                     depthWrite: false,
-                    glslVersion: _three.GLSL3
+                    glslVersion: _three.GLSL1
                 });
             }
         },
@@ -951,8 +951,8 @@ var DxfViewer = /*#__PURE__*/ function() {
                 var pointSizeUniform = pointSize ? "uniform float pointSize;" : "";
                 var pointSizeAssigment = pointSize ? "gl_PointSize = pointSize;" : "";
                 return {
-                    vertex: "\n\n            precision highp float;\n            precision highp int;\n            in vec2 position;\n            ".concat(fullInstanceAttr, "\n            ").concat(pointInstanceAttr, "\n            uniform mat4 modelViewMatrix;\n            uniform mat4 projectionMatrix;\n            ").concat(pointSizeUniform, "\n\n            void main() {\n                vec4 pos = vec4(position, 0.0, 1.0);\n                ").concat(fullInstanceTransform, "\n                ").concat(pointInstanceTransform, "\n                gl_Position = projectionMatrix * modelViewMatrix * pos;\n                ").concat(pointSizeAssigment, "\n            }\n            "),
-                    fragment: "\n\n            precision highp float;\n            precision highp int;\n            uniform vec3 color;\n            out vec4 fragColor;\n\n            void main() {\n                fragColor = vec4(color, 1.0);\n            }\n            "
+                    vertex: "\n\n            precision highp float;\n            precision highp int;\n            attribute vec3 inVertex;\n            attribute vec3 inNormal;\n            ".concat(fullInstanceAttr, "\n            ").concat(pointInstanceAttr, "\n            uniform mat4 modelViewMatrix;\n            uniform mat4 projectionMatrix;\n            ").concat(pointSizeUniform, "\n\n            void main() {\n                vec4 pos = vec4(inVertex, 1.0);\n                ").concat(fullInstanceTransform, "\n                ").concat(pointInstanceTransform, "\n                gl_Position = projectionMatrix * modelViewMatrix * pos;\n                ").concat(pointSizeAssigment, "\n            }\n            "),
+                    fragment: "\n\n            precision highp float;\n            precision highp int;\n            uniform vec3 color;\n\n            void main() {\n                gl_FragColor = vec4(color, 1.0);\n            }\n            "
                 };
             }
         },

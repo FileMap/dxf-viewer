@@ -460,7 +460,7 @@ export class DxfViewer {
             fragmentShader: shaders.fragment,
             depthTest: false,
             depthWrite: false,
-            glslVersion: three.GLSL3,
+            glslVersion: three.GLSL1,
             side: three.DoubleSide
         })
     }
@@ -506,7 +506,7 @@ export class DxfViewer {
             fragmentShader: shaders.fragment,
             depthTest: false,
             depthWrite: false,
-            glslVersion: three.GLSL3
+            glslVersion: three.GLSL1
         })
     }
 
@@ -555,7 +555,8 @@ export class DxfViewer {
 
             precision highp float;
             precision highp int;
-            in vec2 position;
+            attribute vec3 inVertex;
+            attribute vec3 inNormal;
             ${fullInstanceAttr}
             ${pointInstanceAttr}
             uniform mat4 modelViewMatrix;
@@ -563,7 +564,7 @@ export class DxfViewer {
             ${pointSizeUniform}
 
             void main() {
-                vec4 pos = vec4(position, 0.0, 1.0);
+                vec4 pos = vec4(inVertex, 1.0);
                 ${fullInstanceTransform}
                 ${pointInstanceTransform}
                 gl_Position = projectionMatrix * modelViewMatrix * pos;
@@ -575,10 +576,9 @@ export class DxfViewer {
             precision highp float;
             precision highp int;
             uniform vec3 color;
-            out vec4 fragColor;
 
             void main() {
-                fragColor = vec4(color, 1.0);
+                gl_FragColor = vec4(color, 1.0);
             }
             `
         }
