@@ -944,9 +944,9 @@ var DxfViewer = /*#__PURE__*/ function() {
         {
             key: "_GenerateShaders",
             value: function _GenerateShaders(instanceType, pointSize) {
-                var fullInstanceAttr = instanceType === InstanceType.FULL ? "\n            /* First row. */\n            in vec3 instanceTransform0;\n            /* Second row. */\n            in vec3 instanceTransform1;\n            " : "";
+                var fullInstanceAttr = instanceType === InstanceType.FULL ? "\n            /* First row. */\n            attribute vec3 instanceTransform0;\n            /* Second row. */\n            attribute vec3 instanceTransform1;\n            " : "";
                 var fullInstanceTransform = instanceType === InstanceType.FULL ? "\n            pos.xy = mat2(instanceTransform0[0], instanceTransform1[0],\n                          instanceTransform0[1], instanceTransform1[1]) * pos.xy +\n                     vec2(instanceTransform0[2], instanceTransform1[2]);\n            " : "";
-                var pointInstanceAttr = instanceType === InstanceType.POINT ? "\n            in vec2 instanceTransform;\n            " : "";
+                var pointInstanceAttr = instanceType === InstanceType.POINT ? "\n            attribute vec2 instanceTransform;\n            " : "";
                 var pointInstanceTransform = instanceType === InstanceType.POINT ? "\n            pos.xy += instanceTransform;\n            " : "";
                 var pointSizeUniform = pointSize ? "uniform float pointSize;" : "";
                 var pointSizeAssigment = pointSize ? "gl_PointSize = pointSize;" : "";

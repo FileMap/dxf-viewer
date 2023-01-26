@@ -527,9 +527,9 @@ export class DxfViewer {
         const fullInstanceAttr = instanceType === InstanceType.FULL ?
             `
             /* First row. */
-            in vec3 instanceTransform0;
+            attribute vec3 instanceTransform0;
             /* Second row. */
-            in vec3 instanceTransform1;
+            attribute vec3 instanceTransform1;
             ` : ""
         const fullInstanceTransform = instanceType === InstanceType.FULL ?
             `
@@ -540,7 +540,7 @@ export class DxfViewer {
 
         const pointInstanceAttr = instanceType === InstanceType.POINT ?
             `
-            in vec2 instanceTransform;
+            attribute vec2 instanceTransform;
             ` : ""
         const pointInstanceTransform = instanceType === InstanceType.POINT ?
             `
