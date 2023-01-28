@@ -555,8 +555,7 @@ export class DxfViewer {
 
             precision highp float;
             precision highp int;
-            attribute vec3 inVertex;
-            attribute vec3 inNormal;
+            attribute vec2 position;
             ${fullInstanceAttr}
             ${pointInstanceAttr}
             uniform mat4 modelViewMatrix;
@@ -564,7 +563,7 @@ export class DxfViewer {
             ${pointSizeUniform}
 
             void main() {
-                vec4 pos = vec4(inVertex, 1.0);
+                vec4 pos = vec4(position, 0.0, 1.0);
                 ${fullInstanceTransform}
                 ${pointInstanceTransform}
                 gl_Position = projectionMatrix * modelViewMatrix * pos;
