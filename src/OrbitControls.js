@@ -274,24 +274,24 @@ export const OrbitControls = function ( object, domElement ) {
 
 	this.dispose = function () {
 
-		scope.domElement.removeEventListener( 'contextmenu', onContextMenu );
+		// scope.domElement.removeEventListener( 'contextmenu', onContextMenu );
 
-		scope.domElement.removeEventListener( 'pointerdown', onPointerDown );
-		scope.domElement.removeEventListener( 'wheel', onMouseWheel );
+		// scope.domElement.removeEventListener( 'pointerdown', onPointerDown );
+		// scope.domElement.removeEventListener( 'wheel', onMouseWheel );
 
-		scope.domElement.removeEventListener( 'touchstart', onTouchStart );
-		scope.domElement.removeEventListener( 'touchend', onTouchEnd );
-		scope.domElement.removeEventListener( 'touchmove', onTouchMove );
+		// scope.domElement.removeEventListener( 'touchstart', onTouchStart );
+		// scope.domElement.removeEventListener( 'touchend', onTouchEnd );
+		// scope.domElement.removeEventListener( 'touchmove', onTouchMove );
 
-		scope.domElement.ownerDocument.removeEventListener( 'pointermove', onPointerMove );
-		scope.domElement.ownerDocument.removeEventListener( 'pointerup', onPointerUp );
+		// scope.domElement.ownerDocument.removeEventListener( 'pointermove', onPointerMove );
+		// scope.domElement.ownerDocument.removeEventListener( 'pointerup', onPointerUp );
 
 
-		if ( scope._domElementKeyEvents !== null ) {
+		// if ( scope._domElementKeyEvents !== null ) {
 
-			scope._domElementKeyEvents.removeEventListener( 'keydown', onKeyDown );
+		// 	scope._domElementKeyEvents.removeEventListener( 'keydown', onKeyDown );
 
-		}
+		// }
 
 		//scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
 

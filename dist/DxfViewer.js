@@ -626,7 +626,7 @@ var DxfViewer = /*#__PURE__*/ function() {
                 }
                 this.simplePointMaterial = null;
                 this.simpleColorMaterial = null;
-                this.renderer.dispose();
+                // this.renderer.dispose()
                 this.renderer = null;
             }
         },

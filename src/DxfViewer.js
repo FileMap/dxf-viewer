@@ -280,7 +280,7 @@ export class DxfViewer {
         }
         this.simplePointMaterial = null
         this.simpleColorMaterial = null
-        this.renderer.dispose()
+        // this.renderer.dispose()
         this.renderer = null
     }
 
