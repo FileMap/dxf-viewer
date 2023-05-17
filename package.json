@@ -22,8 +22,7 @@
         "CONTRIBUTORS"
     ],
     "scripts": {
-        "build": "swc ./src -d ./dist",
-        "install": "yarn run build"
+        "build": "swc ./src -d ./dist"
     },
     "dependencies": {
         "loglevel": "^1.8.0",
