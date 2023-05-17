@@ -8,9 +8,9 @@ Object.defineProperty(exports, "default", {
         return EntityParser;
     }
 });
-var _parseHelpers = /*#__PURE__*/ _interopRequireWildcard(require("../ParseHelpers"));
-var _vertex = /*#__PURE__*/ _interopRequireDefault(require("./vertex"));
-function _interopRequireDefault(obj) {
+var _ParseHelpers = /*#__PURE__*/ _interop_require_wildcard(require("../ParseHelpers"));
+var _vertex = /*#__PURE__*/ _interop_require_default(require("./vertex"));
+function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
@@ -23,7 +23,7 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
@@ -99,10 +99,10 @@ EntityParser.prototype.parseEntity = function(scanner, curr) {
             case 75:
                 break;
             case 210:
-                entity.extrusionDirection = _parseHelpers.parsePoint(scanner);
+                entity.extrusionDirection = _ParseHelpers.parsePoint(scanner);
                 break;
             default:
-                _parseHelpers.checkCommonEntityProperties(entity, curr);
+                _ParseHelpers.checkCommonEntityProperties(entity, curr);
                 break;
         }
         curr = scanner.next();
@@ -134,7 +134,7 @@ function parseSeqEnd(scanner, curr) {
     curr = scanner.next();
     while(curr != "EOF"){
         if (curr.code == 0) break;
-        _parseHelpers.checkCommonEntityProperties(entity, curr);
+        _ParseHelpers.checkCommonEntityProperties(entity, curr);
         curr = scanner.next();
     }
     return entity;

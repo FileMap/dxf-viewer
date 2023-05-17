@@ -8,7 +8,7 @@ Object.defineProperty(exports, "DxfFetcher", {
         return DxfFetcher;
     }
 });
-var _dxfParser = /*#__PURE__*/ _interopRequireDefault(require("./parser/DxfParser"));
+var _DxfParser = /*#__PURE__*/ _interop_require_default(require("./parser/DxfParser"));
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
         var info = gen[key](arg);
@@ -23,7 +23,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         Promise.resolve(value).then(_next, _throw);
     }
 }
-function _asyncToGenerator(fn) {
+function _async_to_generator(fn) {
     return function() {
         var self = this, args = arguments;
         return new Promise(function(resolve, reject) {
@@ -38,7 +38,7 @@ function _asyncToGenerator(fn) {
         });
     };
 }
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -52,17 +52,17 @@ function _defineProperties(target, props) {
         Object.defineProperty(target, descriptor.key, descriptor);
     }
 }
-function _createClass(Constructor, protoProps, staticProps) {
+function _create_class(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
-function _interopRequireDefault(obj) {
+function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
 }
-var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
+function _ts_generator(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -156,22 +156,22 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
             done: true
         };
     }
-};
+}
 var DxfFetcher = /*#__PURE__*/ function() {
     "use strict";
     function DxfFetcher(url) {
-        _classCallCheck(this, DxfFetcher);
+        _class_call_check(this, DxfFetcher);
         this.url = url;
     }
-    _createClass(DxfFetcher, [
+    _create_class(DxfFetcher, [
         {
             key: "Fetch",
             value: /** @param progressCbk {Function} (phase, receivedSize, totalSize) */ function Fetch() {
                 var progressCbk = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var response, totalSize, buffer, parser;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 return [
@@ -190,7 +190,7 @@ var DxfFetcher = /*#__PURE__*/ function() {
                                 if (progressCbk !== null) {
                                     progressCbk("parse", 0, null);
                                 }
-                                parser = new _dxfParser.default();
+                                parser = new _DxfParser.default();
                                 return [
                                     2,
                                     parser.parseSync(buffer)

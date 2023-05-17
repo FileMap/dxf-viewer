@@ -19,18 +19,18 @@ _export(exports, {
         return ColorCode;
     }
 });
-var _dynamicBuffer = require("./DynamicBuffer");
-var _batchingKey = require("./BatchingKey");
+var _DynamicBuffer = require("./DynamicBuffer");
+var _BatchingKey = require("./BatchingKey");
 var _three = require("three");
-var _textRenderer = require("./TextRenderer");
-var _rbtree = require("./RBTree");
-var _mtextFormatParser = require("./MTextFormatParser");
-function _arrayLikeToArray(arr, len) {
+var _TextRenderer = require("./TextRenderer");
+var _RBTree = require("./RBTree");
+var _MTextFormatParser = require("./MTextFormatParser");
+function _array_like_to_array(arr, len) {
     if (len == null || len > arr.length) len = arr.length;
     for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
     return arr2;
 }
-function _arrayWithHoles(arr) {
+function _array_with_holes(arr) {
     if (Array.isArray(arr)) return arr;
 }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -47,7 +47,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         Promise.resolve(value).then(_next, _throw);
     }
 }
-function _asyncToGenerator(fn) {
+function _async_to_generator(fn) {
     return function() {
         var self = this, args = arguments;
         return new Promise(function(resolve, reject) {
@@ -62,7 +62,7 @@ function _asyncToGenerator(fn) {
         });
     };
 }
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -76,12 +76,12 @@ function _defineProperties(target, props) {
         Object.defineProperty(target, descriptor.key, descriptor);
     }
 }
-function _createClass(Constructor, protoProps, staticProps) {
+function _create_class(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
-function _iterableToArrayLimit(arr, i) {
+function _iterable_to_array_limit(arr, i) {
     var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
     if (_i == null) return;
     var _arr = [];
@@ -105,21 +105,21 @@ function _iterableToArrayLimit(arr, i) {
     }
     return _arr;
 }
-function _nonIterableRest() {
+function _non_iterable_rest() {
     throw new TypeError("Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+function _sliced_to_array(arr, i) {
+    return _array_with_holes(arr) || _iterable_to_array_limit(arr, i) || _unsupported_iterable_to_array(arr, i) || _non_iterable_rest();
 }
-function _unsupportedIterableToArray(o, minLen) {
+function _unsupported_iterable_to_array(o, minLen) {
     if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    if (typeof o === "string") return _array_like_to_array(o, minLen);
     var n = Object.prototype.toString.call(o).slice(8, -1);
     if (n === "Object" && o.constructor) n = o.constructor.name;
     if (n === "Map" || n === "Set") return Array.from(n);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array(o, minLen);
 }
-var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
+function _ts_generator(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -213,8 +213,8 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
             done: true
         };
     }
-};
-var __values = (void 0) && (void 0).__values || function(o) {
+}
+function _ts_values(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
     if (o && typeof o.length === "number") return {
@@ -227,7 +227,7 @@ var __values = (void 0) && (void 0).__values || function(o) {
         }
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
+}
 /** Use 16-bit indices for indexed geometry. */ var INDEXED_CHUNK_SIZE = 0x10000;
 /** Arc angle for tessellating point circle shape. */ var POINT_CIRCLE_TESSELLATION_ANGLE = 15 * Math.PI / 180;
 var POINT_SHAPE_BLOCK_NAME = "__point_shape";
@@ -236,7 +236,7 @@ var POINT_SHAPE_BLOCK_NAME = "__point_shape";
 var DxfScene = /*#__PURE__*/ function() {
     "use strict";
     function DxfScene(options) {
-        _classCallCheck(this, DxfScene);
+        _class_call_check(this, DxfScene);
         this.options = Object.create(DxfScene.DefaultOptions);
         if (options) {
             Object.assign(this.options, options.sceneOptions);
@@ -244,7 +244,7 @@ var DxfScene = /*#__PURE__*/ function() {
         /* Scene origin. All input coordinates are made local to this point to minimize precision
         * loss.
         */ this.origin = null;
-        /* RBTree<BatchingKey, RenderBatch> */ this.batches = new _rbtree.RBTree(function(b1, b2) {
+        /* RBTree<BatchingKey, RenderBatch> */ this.batches = new _RBTree.RBTree(function(b1, b2) {
             return b1.key.Compare(b2.key);
         });
         /* Indexed by layer name, value is layer object from parsed DXF. */ this.layers = new Map();
@@ -253,7 +253,7 @@ var DxfScene = /*#__PURE__*/ function() {
         this.pointShapeBlock = null;
         this.numBlocksFlattened = 0;
     }
-    _createClass(DxfScene, [
+    _create_class(DxfScene, [
         {
             key: "Build",
             value: /** Build the scene from the provided parsed DXF.
@@ -263,9 +263,9 @@ var DxfScene = /*#__PURE__*/ function() {
      *  searched sequentially in each provided font.
      */ function Build(dxf, fontFetchers) {
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var header, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, _step_value, layer, _iteratorNormalCompletion1, _didIteratorError1, _iteratorError1, _iterator1, _step1, _step_value1, block, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, entity, block1, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, block2, blockCtx, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, entity1, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, entity2;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 header = dxf.header || {};
@@ -277,7 +277,7 @@ var DxfScene = /*#__PURE__*/ function() {
                                     _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                                     try {
                                         for(_iterator = Object.entries(dxf.tables.layer.layers)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
-                                            _step_value = _slicedToArray(_step.value, 2), layer = _step_value[1];
+                                            _step_value = _sliced_to_array(_step.value, 2), layer = _step_value[1];
                                             _this.layers.set(layer.name, layer);
                                         }
                                     } catch (err) {
@@ -299,7 +299,7 @@ var DxfScene = /*#__PURE__*/ function() {
                                     _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
                                     try {
                                         for(_iterator1 = Object.entries(dxf.blocks)[Symbol.iterator](); !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
-                                            _step_value1 = _slicedToArray(_step1.value, 2), block = _step_value1[1];
+                                            _step_value1 = _sliced_to_array(_step1.value, 2), block = _step_value1[1];
                                             _this.blocks.set(block.name, new Block(block));
                                         }
                                     } catch (err) {
@@ -317,7 +317,7 @@ var DxfScene = /*#__PURE__*/ function() {
                                         }
                                     }
                                 }
-                                _this.textRenderer = new _textRenderer.TextRenderer(fontFetchers, _this.options.textOptions);
+                                _this.textRenderer = new _TextRenderer.TextRenderer(fontFetchers, _this.options.textOptions);
                                 _this.hasMissingChars = false;
                                 return [
                                     4,
@@ -431,15 +431,15 @@ var DxfScene = /*#__PURE__*/ function() {
             key: "_FetchFonts",
             value: function _FetchFonts(dxf) {
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var ProcessEntity, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, entity, err, _iteratorNormalCompletion1, _didIteratorError1, _iteratorError1, _iterator1, _step1, block, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, entity1, err, err;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 ProcessEntity = function() {
-                                    var _ref = _asyncToGenerator(function(entity) {
+                                    var _ref = _async_to_generator(function(entity) {
                                         var ret, parser, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, text, err;
-                                        return __generator(this, function(_state) {
+                                        return _ts_generator(this, function(_state) {
                                             switch(_state.label){
                                                 case 0:
                                                     if (!(entity.type === "TEXT")) return [
@@ -461,7 +461,7 @@ var DxfScene = /*#__PURE__*/ function() {
                                                         3,
                                                         11
                                                     ];
-                                                    parser = new _mtextFormatParser.MTextFormatParser();
+                                                    parser = new _MTextFormatParser.MTextFormatParser();
                                                     parser.Parse(entity.text);
                                                     _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                                                     _state.label = 3;
@@ -861,7 +861,7 @@ var DxfScene = /*#__PURE__*/ function() {
             key: "_DecomposeLine",
             value: function _DecomposeLine(entity, blockCtx) {
                 var layer, color;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             /* start/end width, bulge - seems cannot be present, at least with current parser */ if (entity.vertices.length !== 2) {
@@ -1017,7 +1017,7 @@ var DxfScene = /*#__PURE__*/ function() {
             key: "_DecomposeArc",
             value: function _DecomposeArc(entity, blockCtx) {
                 var color, layer, lineType, vertices;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             color = this._GetEntityColor(entity, blockCtx);
@@ -1056,7 +1056,7 @@ var DxfScene = /*#__PURE__*/ function() {
             key: "_DecomposeCircle",
             value: function _DecomposeCircle(entity, blockCtx) {
                 var color, layer, lineType, vertices;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             color = this._GetEntityColor(entity, blockCtx);
@@ -1093,7 +1093,7 @@ var DxfScene = /*#__PURE__*/ function() {
             key: "_DecomposeEllipse",
             value: function _DecomposeEllipse(entity, blockCtx) {
                 var color, layer, lineType, vertices, xR, yR, rotation, cos, sin, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, v, tx, ty;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             color = this._GetEntityColor(entity, blockCtx);
@@ -1163,7 +1163,7 @@ var DxfScene = /*#__PURE__*/ function() {
             key: "_DecomposePoint",
             value: function _DecomposePoint(entity, blockCtx) {
                 var color, layer, markType, isShaped, key, batch, vertices;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             if (this.pdMode === PdMode.NONE) {
@@ -1181,7 +1181,7 @@ var DxfScene = /*#__PURE__*/ function() {
                             markType = this.pdMode & PdMode.MARK_MASK;
                             isShaped = (this.pdMode & PdMode.SHAPE_MASK) !== 0;
                             if (isShaped) {
-                                key = new _batchingKey.BatchingKey(layer, POINT_SHAPE_BLOCK_NAME, _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE, color, 0);
+                                key = new _BatchingKey.BatchingKey(layer, POINT_SHAPE_BLOCK_NAME, _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE, color, 0);
                                 batch = this._GetBatch(key);
                                 batch.PushVertex(this._TransformVertex(entity.position));
                                 this._CreatePointShapeBlock();
@@ -1348,12 +1348,12 @@ var DxfScene = /*#__PURE__*/ function() {
         {
             key: "_Decompose3DFace",
             value: function _Decompose3DFace(entity, blockCtx) {
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             return [
                                 5,
-                                __values(this._DecomposeFace(entity, entity.vertices, blockCtx, this.options.wireframeMesh))
+                                _ts_values(this._DecomposeFace(entity, entity.vertices, blockCtx, this.options.wireframeMesh))
                             ];
                         case 1:
                             _state.sent();
@@ -1367,12 +1367,12 @@ var DxfScene = /*#__PURE__*/ function() {
         {
             key: "_DecomposeSolid",
             value: function _DecomposeSolid(entity, blockCtx) {
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             return [
                                 5,
-                                __values(this._DecomposeFace(entity, entity.points, blockCtx, false, this._GetEntityExtrusionTransform(entity)))
+                                _ts_values(this._DecomposeFace(entity, entity.points, blockCtx, false, this._GetEntityExtrusionTransform(entity)))
                             ];
                         case 1:
                             _state.sent();
@@ -1388,7 +1388,7 @@ var DxfScene = /*#__PURE__*/ function() {
             value: function _DecomposeFace(entity, vertices, blockCtx, wireframe) {
                 var transform, IsValidTriangle, layer, color, v0, v1, v2, v3, hasFirstTriangle, hasSecondTriangle, _vertices, _vertices1, indices;
                 var _arguments = arguments;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             transform = _arguments.length > 4 && _arguments[4] !== void 0 ? _arguments[4] : null;
@@ -1495,7 +1495,7 @@ var DxfScene = /*#__PURE__*/ function() {
             key: "_DecomposeText",
             value: function _DecomposeText(entity, blockCtx) {
                 var layer, color;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             if (!this.textRenderer.canRender) {
@@ -1507,7 +1507,7 @@ var DxfScene = /*#__PURE__*/ function() {
                             color = this._GetEntityColor(entity, blockCtx);
                             return [
                                 5,
-                                __values(this.textRenderer.Render({
+                                _ts_values(this.textRenderer.Render({
                                     text: entity.text,
                                     fontSize: entity.textHeight,
                                     startPos: entity.startPoint,
@@ -1533,7 +1533,7 @@ var DxfScene = /*#__PURE__*/ function() {
             key: "_DecomposeMText",
             value: function _DecomposeMText(entity, blockCtx) {
                 var layer, color, parser;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             if (!this.textRenderer.canRender) {
@@ -1543,11 +1543,11 @@ var DxfScene = /*#__PURE__*/ function() {
                             }
                             layer = this._GetEntityLayer(entity, blockCtx);
                             color = this._GetEntityColor(entity, blockCtx);
-                            parser = new _mtextFormatParser.MTextFormatParser();
+                            parser = new _MTextFormatParser.MTextFormatParser();
                             parser.Parse(entity.text);
                             return [
                                 5,
-                                __values(this.textRenderer.RenderMText({
+                                _ts_values(this.textRenderer.RenderMText({
                                     formattedText: parser.GetContent(),
                                     fontSize: entity.height,
                                     position: entity.position,
@@ -1654,7 +1654,7 @@ var DxfScene = /*#__PURE__*/ function() {
                         }
                     }
                 } else {
-                    var key = new _batchingKey.BatchingKey(layer, entity.name, _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE, color, lineType);
+                    var key = new _BatchingKey.BatchingKey(layer, entity.name, _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE, color, lineType);
                     var batch1 = this._GetBatch(key);
                     batch1.PushInstanceTransform(transform);
                 }
@@ -1674,7 +1674,7 @@ var DxfScene = /*#__PURE__*/ function() {
                     color = blockBatch.key.color;
                 }
                 //XXX line type
-                var key = new _batchingKey.BatchingKey(layerName, null, blockBatch.key.geometryType, color, lineType);
+                var key = new _BatchingKey.BatchingKey(layerName, null, blockBatch.key.geometryType, color, lineType);
                 var batch = this._GetBatch(key);
                 batch.Merge(blockBatch, transform);
             }
@@ -1691,7 +1691,7 @@ var DxfScene = /*#__PURE__*/ function() {
      * @param shape {Boolean} True if closed polyline.
      * @return {Generator<Entity>}
      */ function _GenerateShapedPolyline(vertices, layer, color, lineType, shape) {
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             //XXX
@@ -1754,13 +1754,13 @@ var DxfScene = /*#__PURE__*/ function() {
             value: function _DecomposePolyline(entity) {
                 var blockCtx, CommitSegment, entityVertices, verticesCount, color, layer, _this, startIdx, curPlainLine, curLineType, curVertices, vIdx, prevVtx, vtx, isPlainLine, lineType;
                 var _arguments = arguments;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             blockCtx = _arguments.length > 1 && _arguments[1] !== void 0 ? _arguments[1] : null;
                             CommitSegment = function CommitSegment(endIdx) {
                                 var isClosed, vertices;
-                                return __generator(this, function(_state) {
+                                return _ts_generator(this, function(_state) {
                                     switch(_state.label){
                                         case 0:
                                             if (endIdx === startIdx) {
@@ -1813,7 +1813,7 @@ var DxfScene = /*#__PURE__*/ function() {
                                         case 2:
                                             return [
                                                 5,
-                                                __values(_this._GenerateShapedPolyline(vertices, layer, color, curLineType, isClosed))
+                                                _ts_values(_this._GenerateShapedPolyline(vertices, layer, color, curLineType, isClosed))
                                             ];
                                         case 3:
                                             _state.sent();
@@ -1872,7 +1872,7 @@ var DxfScene = /*#__PURE__*/ function() {
                             ];
                             return [
                                 5,
-                                __values(CommitSegment(vIdx - 1))
+                                _ts_values(CommitSegment(vIdx - 1))
                             ];
                         case 2:
                             _state.sent();
@@ -1904,7 +1904,7 @@ var DxfScene = /*#__PURE__*/ function() {
                             ];
                             return [
                                 5,
-                                __values(CommitSegment(vIdx))
+                                _ts_values(CommitSegment(vIdx))
                             ];
                         case 6:
                             _state.sent();
@@ -1921,7 +1921,7 @@ var DxfScene = /*#__PURE__*/ function() {
                             ];
                             return [
                                 5,
-                                __values(CommitSegment(vIdx))
+                                _ts_values(CommitSegment(vIdx))
                             ];
                         case 8:
                             _state.sent();
@@ -1945,7 +1945,7 @@ var DxfScene = /*#__PURE__*/ function() {
             value: function _DecomposeSpline(entity) {
                 var blockCtx, color, layer, lineType, controlPoints, vertices, subdivisions, step, i, pt;
                 var _arguments = arguments;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             blockCtx = _arguments.length > 1 && _arguments[1] !== void 0 ? _arguments[1] : null;
@@ -2087,7 +2087,7 @@ var DxfScene = /*#__PURE__*/ function() {
      */ key: "_ProcessPoints",
             value: function _ProcessPoints(entity) {
                 var blockCtx = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null;
-                var key = new _batchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _batchingKey.BatchingKey.GeometryType.POINTS, entity.color, 0);
+                var key = new _BatchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _BatchingKey.BatchingKey.GeometryType.POINTS, entity.color, 0);
                 var batch = this._GetBatch(key);
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
@@ -2121,7 +2121,7 @@ var DxfScene = /*#__PURE__*/ function() {
                 if (entity.vertices.length % 2 !== 0) {
                     throw Error("Even number of vertices expected");
                 }
-                var key = new _batchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _batchingKey.BatchingKey.GeometryType.LINES, entity.color, entity.lineType);
+                var key = new _BatchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _BatchingKey.BatchingKey.GeometryType.LINES, entity.color, entity.lineType);
                 var batch = this._GetBatch(key);
                 var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                 try {
@@ -2159,7 +2159,7 @@ var DxfScene = /*#__PURE__*/ function() {
          * polylines with just two points.
          */ var verticesCount = entity.vertices.length;
                 if (verticesCount <= 3) {
-                    var key = new _batchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _batchingKey.BatchingKey.GeometryType.LINES, entity.color, entity.lineType);
+                    var key = new _BatchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _BatchingKey.BatchingKey.GeometryType.LINES, entity.color, entity.lineType);
                     var batch = this._GetBatch(key);
                     var prev = null;
                     var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
@@ -2192,7 +2192,7 @@ var DxfScene = /*#__PURE__*/ function() {
                     }
                     return;
                 }
-                var key1 = new _batchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _batchingKey.BatchingKey.GeometryType.INDEXED_LINES, entity.color, entity.lineType);
+                var key1 = new _BatchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _BatchingKey.BatchingKey.GeometryType.INDEXED_LINES, entity.color, entity.lineType);
                 var batch1 = this._GetBatch(key1);
                 var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
                 try {
@@ -2271,7 +2271,7 @@ var DxfScene = /*#__PURE__*/ function() {
                     console.error("Unexpected size of indices array: " + entity.indices.length);
                     return;
                 }
-                var key = new _batchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _batchingKey.BatchingKey.GeometryType.INDEXED_TRIANGLES, entity.color, 0);
+                var key = new _BatchingKey.BatchingKey(entity.layer, blockCtx === null || blockCtx === void 0 ? void 0 : blockCtx.name, _BatchingKey.BatchingKey.GeometryType.INDEXED_TRIANGLES, entity.color, 0);
                 var batch = this._GetBatch(key);
                 //XXX splitting into chunks is not yet implemented. Currently used only for text glyphs so
                 // should fit into one chunk
@@ -2518,17 +2518,17 @@ var DxfScene = /*#__PURE__*/ function() {
 var RenderBatch = /*#__PURE__*/ function() {
     "use strict";
     function RenderBatch(key) {
-        _classCallCheck(this, RenderBatch);
+        _class_call_check(this, RenderBatch);
         this.key = key;
         if (key.IsIndexed()) {
             this.chunks = [];
-        } else if (key.geometryType === _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE) {
-            this.transforms = new _dynamicBuffer.DynamicBuffer(_dynamicBuffer.NativeType.FLOAT32);
+        } else if (key.geometryType === _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE) {
+            this.transforms = new _DynamicBuffer.DynamicBuffer(_DynamicBuffer.NativeType.FLOAT32);
         } else {
-            this.vertices = new _dynamicBuffer.DynamicBuffer(_dynamicBuffer.NativeType.FLOAT32);
+            this.vertices = new _DynamicBuffer.DynamicBuffer(_DynamicBuffer.NativeType.FLOAT32);
         }
     }
-    _createClass(RenderBatch, [
+    _create_class(RenderBatch, [
         {
             key: "PushVertex",
             value: function PushVertex(v) {
@@ -2683,7 +2683,7 @@ var RenderBatch = /*#__PURE__*/ function() {
                         }
                     }
                     return size * Float32Array.BYTES_PER_ELEMENT;
-                } else if (this.key.geometryType === _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE) {
+                } else if (this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE) {
                     return 0;
                 } else {
                     return this.vertices.GetSize() * Float32Array.BYTES_PER_ELEMENT;
@@ -2724,7 +2724,7 @@ var RenderBatch = /*#__PURE__*/ function() {
         {
             /** @return Instances transforms buffer required size in bytes. */ key: "GetTransformsSize",
             value: function GetTransformsSize() {
-                if (this.key.geometryType === _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE) {
+                if (this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE) {
                     return this.transforms.GetSize() * Float32Array.BYTES_PER_ELEMENT;
                 } else {
                     return 0;
@@ -2760,7 +2760,7 @@ var RenderBatch = /*#__PURE__*/ function() {
                         }
                     }
                     return batch;
-                } else if (this.key.geometryType === _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE) {
+                } else if (this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE) {
                     var size = this.transforms.GetSize();
                     var batch1 = {
                         key: this.key,
@@ -2797,7 +2797,7 @@ var RenderBatch = /*#__PURE__*/ function() {
 var Block = /*#__PURE__*/ function() {
     "use strict";
     function Block(data) {
-        _classCallCheck(this, Block);
+        _class_call_check(this, Block);
         this.data = data;
         /* Number of times referenced from top-level entities (INSERT). */ this.useCount = 0;
         /* Number of times referenced by other block. */ this.nestedUseCount = 0;
@@ -2809,7 +2809,7 @@ var Block = /*#__PURE__*/ function() {
         this.flatten = false;
         /** Bounds in block coordinates (with offset applied). */ this.bounds = null;
     }
-    _createClass(Block, [
+    _create_class(Block, [
         {
             /** Set block flattening flag based on usage statistics.
      * @return {Boolean} New flatten flag state.
@@ -2885,13 +2885,13 @@ var Block = /*#__PURE__*/ function() {
 var BlockContext = /*#__PURE__*/ function() {
     "use strict";
     function BlockContext(block, type) {
-        _classCallCheck(this, BlockContext);
+        _class_call_check(this, BlockContext);
         this.block = block;
         this.type = type;
         this.origin = this.block.data.position;
         /* Transform to apply for block definition entities not including block offset. */ this.transform = new _three.Matrix3();
     }
-    _createClass(BlockContext, [
+    _create_class(BlockContext, [
         {
             key: "name",
             get: /** @return {string} Block name */ function get() {
@@ -2975,14 +2975,14 @@ BlockContext.Type = Object.freeze({
 var IndexedChunk = /*#__PURE__*/ function() {
     "use strict";
     function IndexedChunk(initialCapacity) {
-        _classCallCheck(this, IndexedChunk);
+        _class_call_check(this, IndexedChunk);
         if (initialCapacity < 16) {
             initialCapacity = 16;
         }
-        /* Average two indices per vertex. */ this.indices = new _dynamicBuffer.DynamicBuffer(_dynamicBuffer.NativeType.UINT16, initialCapacity * 2);
-        /* Two components per vertex. */ this.vertices = new _dynamicBuffer.DynamicBuffer(_dynamicBuffer.NativeType.FLOAT32, initialCapacity * 2);
+        /* Average two indices per vertex. */ this.indices = new _DynamicBuffer.DynamicBuffer(_DynamicBuffer.NativeType.UINT16, initialCapacity * 2);
+        /* Two components per vertex. */ this.vertices = new _DynamicBuffer.DynamicBuffer(_DynamicBuffer.NativeType.FLOAT32, initialCapacity * 2);
     }
-    _createClass(IndexedChunk, [
+    _create_class(IndexedChunk, [
         {
             key: "Serialize",
             value: function Serialize(buffers) {
@@ -3010,13 +3010,13 @@ var IndexedChunk = /*#__PURE__*/ function() {
 var IndexedChunkWriter = /*#__PURE__*/ function() {
     "use strict";
     function IndexedChunkWriter(chunk, verticesCount) {
-        _classCallCheck(this, IndexedChunkWriter);
+        _class_call_check(this, IndexedChunkWriter);
         this.chunk = chunk;
         this.verticesCount = verticesCount;
         this.verticesOffset = this.chunk.vertices.GetSize() / 2;
         this.numVerticesPushed = 0;
     }
-    _createClass(IndexedChunkWriter, [
+    _create_class(IndexedChunkWriter, [
         {
             key: "PushVertex",
             value: function PushVertex(v) {
@@ -3052,7 +3052,7 @@ var Entity = /*#__PURE__*/ function() {
     "use strict";
     function Entity(param) {
         var type = param.type, vertices = param.vertices, _param_indices = param.indices, indices = _param_indices === void 0 ? null : _param_indices, _param_layer = param.layer, layer = _param_layer === void 0 ? null : _param_layer, color = param.color, _param_lineType = param.lineType, lineType = _param_lineType === void 0 ? 0 : _param_lineType, _param_shape = param.shape, shape = _param_shape === void 0 ? false : _param_shape;
-        _classCallCheck(this, Entity);
+        _class_call_check(this, Entity);
         this.type = type;
         this.vertices = vertices;
         this.indices = indices;
@@ -3061,12 +3061,12 @@ var Entity = /*#__PURE__*/ function() {
         this.lineType = lineType;
         this.shape = shape;
     }
-    _createClass(Entity, [
+    _create_class(Entity, [
         {
             key: "_IterateVertices",
             value: function _IterateVertices(startIndex, count) {
                 var idx;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             idx = startIndex;
@@ -3107,12 +3107,12 @@ var Entity = /*#__PURE__*/ function() {
      *  Closed shapes are handled properly.
      */ function _IterateLineChunks() {
                 var _this, _loop, verticesCount, _this1, chunkOffset, _ret;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             _this = this, _loop = function(chunkOffset) {
                                 var count, isLast, vertices, indices, chunkVerticesCount;
-                                return __generator(this, function(_state) {
+                                return _ts_generator(this, function(_state) {
                                     switch(_state.label){
                                         case 0:
                                             count = verticesCount - chunkOffset;
@@ -3138,7 +3138,7 @@ var Entity = /*#__PURE__*/ function() {
                                             if (count < 2) {
                                                 /* Either last vertex or last shape-closing vertex, or both. */ if (count === 1 && _this.shape) {
                                                     /* Both. */ vertices = function() {
-                                                        return __generator(this, function(_state) {
+                                                        return _ts_generator(this, function(_state) {
                                                             switch(_state.label){
                                                                 case 0:
                                                                     return [
@@ -3161,7 +3161,7 @@ var Entity = /*#__PURE__*/ function() {
                                                     }();
                                                 } else if (count === 1) {
                                                     /* Just last vertex. Take previous one to make a line. */ vertices = function() {
-                                                        return __generator(this, function(_state) {
+                                                        return _ts_generator(this, function(_state) {
                                                             switch(_state.label){
                                                                 case 0:
                                                                     return [
@@ -3184,7 +3184,7 @@ var Entity = /*#__PURE__*/ function() {
                                                     }();
                                                 } else {
                                                     /* Just shape-closing vertex. Take last one to make a line. */ vertices = function() {
-                                                        return __generator(this, function(_state) {
+                                                        return _ts_generator(this, function(_state) {
                                                             switch(_state.label){
                                                                 case 0:
                                                                     return [
@@ -3210,12 +3210,12 @@ var Entity = /*#__PURE__*/ function() {
                                                 chunkVerticesCount = 2;
                                             } else if (isLast && _this.shape && chunkOffset > 0 && count < INDEXED_CHUNK_SIZE) {
                                                 /* Additional vertex to close the shape. */ vertices = function() {
-                                                    return __generator(this, function(_state) {
+                                                    return _ts_generator(this, function(_state) {
                                                         switch(_state.label){
                                                             case 0:
                                                                 return [
                                                                     5,
-                                                                    __values(_this1._IterateVertices(chunkOffset, count))
+                                                                    _ts_values(_this1._IterateVertices(chunkOffset, count))
                                                                 ];
                                                             case 1:
                                                                 _state.sent();
@@ -3270,7 +3270,7 @@ var Entity = /*#__PURE__*/ function() {
                             ];
                             return [
                                 5,
-                                __values(_loop(chunkOffset))
+                                _ts_values(_loop(chunkOffset))
                             ];
                         case 2:
                             _ret = _state.sent();
@@ -3304,7 +3304,7 @@ Entity.Type = Object.freeze({
 });
 function _IterateLineIndices(verticesCount, close) {
     var idx;
-    return __generator(this, function(_state) {
+    return _ts_generator(this, function(_state) {
         switch(_state.label){
             case 0:
                 idx = 0;
@@ -3377,5 +3377,5 @@ DxfScene.DefaultOptions = {
     /** Target angle for each segment of tessellated arc. */ arcTessellationAngle: 10 / 180 * Math.PI,
     /** Divide arc to at least the specified number of segments. */ minArcTessellationSubdivisions: 8,
     /** Render meshes (3DFACE group) as wireframe instead of solid. */ wireframeMesh: false,
-    /** Text rendering options. */ textOptions: _textRenderer.TextRenderer.DefaultOptions
+    /** Text rendering options. */ textOptions: _TextRenderer.TextRenderer.DefaultOptions
 };

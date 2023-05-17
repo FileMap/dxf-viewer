@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return EntityParser;
     }
 });
-var _parseHelpers = /*#__PURE__*/ _interopRequireWildcard(require("../ParseHelpers"));
+var _ParseHelpers = /*#__PURE__*/ _interop_require_wildcard(require("../ParseHelpers"));
 function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function") return null;
     var cacheBabelInterop = new WeakMap();
@@ -17,7 +17,7 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
@@ -61,17 +61,17 @@ EntityParser.prototype.parseEntity = function(scanner, curr) {
         switch(curr.code){
             case 10:
                 if (!entity.controlPoints) entity.controlPoints = [];
-                entity.controlPoints.push(_parseHelpers.parsePoint(scanner));
+                entity.controlPoints.push(_ParseHelpers.parsePoint(scanner));
                 break;
             case 11:
                 if (!entity.fitPoints) entity.fitPoints = [];
-                entity.fitPoints.push(_parseHelpers.parsePoint(scanner));
+                entity.fitPoints.push(_ParseHelpers.parsePoint(scanner));
                 break;
             case 12:
-                entity.startTangent = _parseHelpers.parsePoint(scanner);
+                entity.startTangent = _ParseHelpers.parsePoint(scanner);
                 break;
             case 13:
-                entity.endTangent = _parseHelpers.parsePoint(scanner);
+                entity.endTangent = _ParseHelpers.parsePoint(scanner);
                 break;
             case 40:
                 if (!entity.knotValues) entity.knotValues = [];
@@ -100,10 +100,10 @@ EntityParser.prototype.parseEntity = function(scanner, curr) {
                 entity.numberOfFitPoints = curr.value;
                 break;
             case 210:
-                entity.extrusionDirection = _parseHelpers.parsePoint(scanner);
+                entity.extrusionDirection = _ParseHelpers.parsePoint(scanner);
                 break;
             default:
-                _parseHelpers.checkCommonEntityProperties(entity, curr);
+                _ParseHelpers.checkCommonEntityProperties(entity, curr);
                 break;
         }
         curr = scanner.next();

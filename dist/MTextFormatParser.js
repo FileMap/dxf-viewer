@@ -11,7 +11,7 @@ Object.defineProperty(exports, "MTextFormatParser", {
         return MTextFormatParser;
     }
 });
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -25,12 +25,12 @@ function _defineProperties(target, props) {
         Object.defineProperty(target, descriptor.key, descriptor);
     }
 }
-function _createClass(Constructor, protoProps, staticProps) {
+function _create_class(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
-var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
+function _ts_generator(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -124,8 +124,8 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
             done: true
         };
     }
-};
-var __values = (void 0) && (void 0).__values || function(o) {
+}
+function _ts_values(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
     if (o && typeof o.length === "number") return {
@@ -138,7 +138,7 @@ var __values = (void 0) && (void 0).__values || function(o) {
         }
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
+}
 var State = Object.freeze({
     TEXT: 0,
     ESCAPE: 1,
@@ -187,10 +187,10 @@ var validEscapes = new Set([
 var MTextFormatParser = /*#__PURE__*/ function() {
     "use strict";
     function MTextFormatParser() {
-        _classCallCheck(this, MTextFormatParser);
+        _class_call_check(this, MTextFormatParser);
         this.entities = [];
     }
-    _createClass(MTextFormatParser, [
+    _create_class(MTextFormatParser, [
         {
             key: "Parse",
             value: function Parse(text) {
@@ -333,7 +333,7 @@ var MTextFormatParser = /*#__PURE__*/ function() {
             value: /** Return only text chunks in a flattened sequence of strings. */ function GetText() {
                 function TraverseItems(items) {
                     var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, err;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
@@ -374,7 +374,7 @@ var MTextFormatParser = /*#__PURE__*/ function() {
                                 ];
                                 return [
                                     5,
-                                    __values(TraverseItems(item.content))
+                                    _ts_values(TraverseItems(item.content))
                                 ];
                             case 5:
                                 _state.sent();
@@ -418,12 +418,12 @@ var MTextFormatParser = /*#__PURE__*/ function() {
                         }
                     });
                 }
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             return [
                                 5,
-                                __values(TraverseItems(this.GetContent()))
+                                _ts_values(TraverseItems(this.GetContent()))
                             ];
                         case 1:
                             _state.sent();

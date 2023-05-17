@@ -8,9 +8,9 @@ Object.defineProperty(exports, "TextRenderer", {
         return TextRenderer;
     }
 });
-var _dxfScene = require("./DxfScene");
+var _DxfScene = require("./DxfScene");
 var _three = require("three");
-var _mtextFormatParser = require("./MTextFormatParser");
+var _MTextFormatParser = require("./MTextFormatParser");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
         var info = gen[key](arg);
@@ -25,7 +25,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         Promise.resolve(value).then(_next, _throw);
     }
 }
-function _asyncToGenerator(fn) {
+function _async_to_generator(fn) {
     return function() {
         var self = this, args = arguments;
         return new Promise(function(resolve, reject) {
@@ -40,7 +40,7 @@ function _asyncToGenerator(fn) {
         });
     };
 }
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -54,12 +54,12 @@ function _defineProperties(target, props) {
         Object.defineProperty(target, descriptor.key, descriptor);
     }
 }
-function _createClass(Constructor, protoProps, staticProps) {
+function _create_class(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
-var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
+function _ts_generator(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -153,8 +153,8 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
             done: true
         };
     }
-};
-var __values = (void 0) && (void 0).__values || function(o) {
+}
+function _ts_values(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
     if (o && typeof o.length === "number") return {
@@ -167,15 +167,15 @@ var __values = (void 0) && (void 0).__values || function(o) {
         }
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
+}
 var TextRenderer = /*#__PURE__*/ function() {
     "use strict";
     function TextRenderer(fontFetchers) {
         var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null;
-        _classCallCheck(this, TextRenderer);
+        _class_call_check(this, TextRenderer);
         this.fontFetchers = fontFetchers;
         this.fonts = [];
-        this.options = Object.create(_dxfScene.DxfScene.DefaultOptions);
+        this.options = Object.create(_DxfScene.DxfScene.DefaultOptions);
         if (options) {
             Object.assign(this.options, options);
         }
@@ -185,7 +185,7 @@ var TextRenderer = /*#__PURE__*/ function() {
          * character can not be rendered as well.
          */ this.stubShape = null;
     }
-    _createClass(TextRenderer, [
+    _create_class(TextRenderer, [
         {
             key: "FetchFonts",
             value: /** Fetch necessary fonts to render the provided text. Should be called for each string which
@@ -195,9 +195,9 @@ var TextRenderer = /*#__PURE__*/ function() {
      *  contains glyphs for some of the specified text characters.
      */ function FetchFonts(text) {
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, char, err, charMissing, _iteratorNormalCompletion1, _didIteratorError1, _iteratorError1, _iterator1, _step1, char1, found, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, font, fetcher, font1, err;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 if (!!_this.stubShapeLoaded) return [
@@ -423,7 +423,7 @@ var TextRenderer = /*#__PURE__*/ function() {
      *  glyph.
      */ function Render(param) {
                 var text, startPos, endPos, _param_rotation, rotation, _param_widthFactor, widthFactor, _param_hAlign, hAlign, _param_vAlign, vAlign, color, _param_layer, layer, fontSize, block, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, char, shape;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             text = param.text, startPos = param.startPos, endPos = param.endPos, _param_rotation = param.rotation, rotation = _param_rotation === void 0 ? 0 : _param_rotation, _param_widthFactor = param.widthFactor, widthFactor = _param_widthFactor === void 0 ? 1 : _param_widthFactor, _param_hAlign = param.hAlign, hAlign = _param_hAlign === void 0 ? 0 : _param_hAlign, _param_vAlign = param.vAlign, vAlign = _param_vAlign === void 0 ? 0 : _param_vAlign, color = param.color, _param_layer = param.layer, layer = _param_layer === void 0 ? null : _param_layer, fontSize = param.fontSize;
@@ -454,7 +454,7 @@ var TextRenderer = /*#__PURE__*/ function() {
                             }
                             return [
                                 5,
-                                __values(block.Render(startPos, endPos, rotation, widthFactor, hAlign, vAlign, color, layer))
+                                _ts_values(block.Render(startPos, endPos, rotation, widthFactor, hAlign, vAlign, color, layer))
                             ];
                         case 1:
                             _state.sent();
@@ -483,7 +483,7 @@ var TextRenderer = /*#__PURE__*/ function() {
      *  glyph.
      */ function RenderMText(param) {
                 var formattedText, position, fontSize, _param_width, width, _param_rotation, rotation, _param_direction, direction, attachment, _param_lineSpacing, lineSpacing, color, _param_layer, layer, box;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             formattedText = param.formattedText, position = param.position, fontSize = param.fontSize, _param_width = param.width, width = _param_width === void 0 ? null : _param_width, _param_rotation = param.rotation, rotation = _param_rotation === void 0 ? 0 : _param_rotation, _param_direction = param.direction, direction = _param_direction === void 0 ? null : _param_direction, attachment = param.attachment, _param_lineSpacing = param.lineSpacing, lineSpacing = _param_lineSpacing === void 0 ? 1 : _param_lineSpacing, color = param.color, _param_layer = param.layer, layer = _param_layer === void 0 ? null : _param_layer;
@@ -491,7 +491,7 @@ var TextRenderer = /*#__PURE__*/ function() {
                             box.FeedText(formattedText);
                             return [
                                 5,
-                                __values(box.Render(position, width, rotation, direction, attachment, lineSpacing, color, layer))
+                                _ts_values(box.Render(position, width, rotation, direction, attachment, lineSpacing, color, layer))
                             ];
                         case 1:
                             _state.sent();
@@ -549,9 +549,9 @@ var TextRenderer = /*#__PURE__*/ function() {
         {
             key: "_FetchFont",
             value: function _FetchFont(fontFetcher) {
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var _;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 _ = Font.bind;
@@ -590,7 +590,7 @@ TextRenderer.DefaultOptions = {
  */ var CharShape = /*#__PURE__*/ function() {
     "use strict";
     function CharShape(font, glyph, options) {
-        _classCallCheck(this, CharShape);
+        _class_call_check(this, CharShape);
         this.font = font;
         this.advance = glyph.advance;
         this.bounds = glyph.bounds;
@@ -733,7 +733,7 @@ TextRenderer.DefaultOptions = {
             this.vertices = null;
         }
     }
-    _createClass(CharShape, [
+    _create_class(CharShape, [
         {
             /** Get vertices array transformed to the specified position and with the specified size.
      * @param position {{x,y}}
@@ -752,7 +752,7 @@ TextRenderer.DefaultOptions = {
 var Font = /*#__PURE__*/ function() {
     "use strict";
     function Font(data) {
-        _classCallCheck(this, Font);
+        _class_call_check(this, Font);
         this.data = data;
         this.charMap = new Map();
         var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
@@ -782,7 +782,7 @@ var Font = /*#__PURE__*/ function() {
         // (100px?)
         this.scale = 100 / ((this.data.unitsPerEm || 2048) * 72);
     }
-    _createClass(Font, [
+    _create_class(Font, [
         {
             /**
      * @param char {string} Character code point as string.
@@ -898,7 +898,7 @@ var Font = /*#__PURE__*/ function() {
 /** Encapsulates layout calculations for a multiline-line text block. */ var TextBox = /*#__PURE__*/ function() {
     "use strict";
     function TextBox(fontSize, charShapeProvider) {
-        _classCallCheck(this, TextBox);
+        _class_call_check(this, TextBox);
         this.fontSize = fontSize;
         this.charShapeProvider = charShapeProvider;
         this.curParagraph = new TextBox.Paragraph(this);
@@ -907,7 +907,7 @@ var Font = /*#__PURE__*/ function() {
         ];
         this.spaceShape = charShapeProvider(" ");
     }
-    _createClass(TextBox, [
+    _create_class(TextBox, [
         {
             /** Add some formatted text to the box.
      * @param {MTextFormatEntity[]} formattedText Parsed formatted text.
@@ -915,7 +915,7 @@ var Font = /*#__PURE__*/ function() {
             value: function FeedText(formattedText) {
                 /* For now advanced formatting is not implemented so scopes are just flattened. */ function FlattenItems(items) {
                     var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, err;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
@@ -935,13 +935,13 @@ var Font = /*#__PURE__*/ function() {
                                     7
                                 ];
                                 item = _step.value;
-                                if (!(item.type === _mtextFormatParser.MTextFormatParser.EntityType.SCOPE)) return [
+                                if (!(item.type === _MTextFormatParser.MTextFormatParser.EntityType.SCOPE)) return [
                                     3,
                                     4
                                 ];
                                 return [
                                     5,
-                                    __values(FlattenItems(item.content))
+                                    _ts_values(FlattenItems(item.content))
                                 ];
                             case 3:
                                 _state.sent();
@@ -1002,7 +1002,7 @@ var Font = /*#__PURE__*/ function() {
                     for(var _iterator = FlattenItems(formattedText)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
                         var item = _step.value;
                         switch(item.type){
-                            case _mtextFormatParser.MTextFormatParser.EntityType.TEXT:
+                            case _MTextFormatParser.MTextFormatParser.EntityType.TEXT:
                                 var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
                                 try {
                                     for(var _iterator1 = item.content[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
@@ -1028,15 +1028,15 @@ var Font = /*#__PURE__*/ function() {
                                     }
                                 }
                                 break;
-                            case _mtextFormatParser.MTextFormatParser.EntityType.PARAGRAPH:
+                            case _MTextFormatParser.MTextFormatParser.EntityType.PARAGRAPH:
                                 this.curParagraph = new TextBox.Paragraph(this);
                                 this.curParagraph.SetAlignment(curAlignment);
                                 this.paragraphs.push(this.curParagraph);
                                 break;
-                            case _mtextFormatParser.MTextFormatParser.EntityType.NON_BREAKING_SPACE:
+                            case _MTextFormatParser.MTextFormatParser.EntityType.NON_BREAKING_SPACE:
                                 this.curParagraph.FeedChar(" ");
                                 break;
-                            case _mtextFormatParser.MTextFormatParser.EntityType.PARAGRAPH_ALIGNMENT:
+                            case _MTextFormatParser.MTextFormatParser.EntityType.PARAGRAPH_ALIGNMENT:
                                 var a = null;
                                 switch(item.alignment){
                                     case "l":
@@ -1080,7 +1080,7 @@ var Font = /*#__PURE__*/ function() {
             key: "Render",
             value: function Render(position, width, rotation, direction, attachment, lineSpacing, color, layer) {
                 var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, p, _iteratorNormalCompletion1, _didIteratorError1, _iteratorError1, _iterator1, _step1, p1, pWidth, defaultAlignment, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, p2, lineHeight, height, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, p3, origin, transform, y, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, p4, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, line, chunkIdx, chunk, x, v, err, err;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
@@ -1293,7 +1293,7 @@ var Font = /*#__PURE__*/ function() {
                             ];
                             return [
                                 5,
-                                __values(chunk.block.Render(v, null, rotation, null, HAlign.LEFT, VAlign.BASELINE, color, layer))
+                                _ts_values(chunk.block.Render(v, null, rotation, null, HAlign.LEFT, VAlign.BASELINE, color, layer))
                             ];
                         case 6:
                             _state.sent();
@@ -1385,14 +1385,14 @@ var Font = /*#__PURE__*/ function() {
 TextBox.Paragraph = /*#__PURE__*/ function() {
     "use strict";
     function _class(textBox) {
-        _classCallCheck(this, _class);
+        _class_call_check(this, _class);
         this.textBox = textBox;
         this.chunks = [];
         this.curChunk = null;
         this.alignment = null;
         this.lines = null;
     }
-    _createClass(_class, [
+    _create_class(_class, [
         {
             /** Feed character for current chunk. Spaces should be fed by FeedSpace() method. If space
      * character is fed into this method, it is interpreted as non-breaking space.
@@ -1534,7 +1534,7 @@ TextBox.Paragraph.Alignment = Object.freeze({
 TextBox.Paragraph.Chunk = /*#__PURE__*/ function() {
     "use strict";
     function _class(paragraph, fontSize, prevChunk) {
-        _classCallCheck(this, _class);
+        _class_call_check(this, _class);
         this.paragraph = paragraph;
         this.fontSize = fontSize;
         this.prevChunk = prevChunk;
@@ -1546,7 +1546,7 @@ TextBox.Paragraph.Chunk = /*#__PURE__*/ function() {
         this.block = null;
         this.position = null;
     }
-    _createClass(_class, [
+    _create_class(_class, [
         {
             key: "PushSpace",
             value: function PushSpace() {
@@ -1612,13 +1612,13 @@ TextBox.Paragraph.Chunk = /*#__PURE__*/ function() {
 TextBox.Paragraph.Line = /*#__PURE__*/ function() {
     "use strict";
     function _class(paragraph, startChunkIdx, numChunks, width) {
-        _classCallCheck(this, _class);
+        _class_call_check(this, _class);
         this.paragraph = paragraph;
         this.startChunkIdx = startChunkIdx;
         this.numChunks = numChunks;
         this.width = width;
     }
-    _createClass(_class, [
+    _create_class(_class, [
         {
             key: "ApplyAlignment",
             value: function ApplyAlignment(boxWidth, defaultAlignment) {
@@ -1676,7 +1676,7 @@ TextBox.Paragraph.Line = /*#__PURE__*/ function() {
 /** Encapsulates calculations for a single-line text block. */ var TextBlock = /*#__PURE__*/ function() {
     "use strict";
     function TextBlock(fontSize) {
-        _classCallCheck(this, TextBlock);
+        _class_call_check(this, TextBlock);
         this.fontSize = fontSize;
         /* Element is {shape: CharShape, vertices: ?{Vector2}[]} */ this.glyphs = [];
         this.bounds = null;
@@ -1684,7 +1684,7 @@ TextBox.Paragraph.Line = /*#__PURE__*/ function() {
         this.prevChar = null;
         this.prevFont = null;
     }
-    _createClass(TextBlock, [
+    _create_class(TextBlock, [
         {
             /**
      * @param char {string}
@@ -1764,7 +1764,7 @@ TextBox.Paragraph.Line = /*#__PURE__*/ function() {
      *  glyph.
      */ function Render(startPos, endPos, rotation, widthFactor, hAlign, vAlign, color, layer) {
                 var _this, origin, scale, insertionPos, GetFitScale, GetFitRotation, f, transform, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, glyph, _iteratorNormalCompletion1, _didIteratorError1, _iteratorError1, _iterator1, _step1, v, err;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             _this = this;
@@ -1883,8 +1883,8 @@ TextBox.Paragraph.Line = /*#__PURE__*/ function() {
                             }
                             return [
                                 4,
-                                new _dxfScene.Entity({
-                                    type: _dxfScene.Entity.Type.TRIANGLES,
+                                new _DxfScene.Entity({
+                                    type: _DxfScene.Entity.Type.TRIANGLES,
                                     vertices: glyph.vertices,
                                     indices: glyph.shape.indices,
                                     layer: layer,

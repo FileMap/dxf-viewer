@@ -8,33 +8,33 @@ Object.defineProperty(exports, "default", {
         return DxfParser;
     }
 });
-var _dxfArrayScanner = /*#__PURE__*/ _interopRequireDefault(require("./DxfArrayScanner"));
-var _autoCadColorIndex = /*#__PURE__*/ _interopRequireDefault(require("./AutoCadColorIndex"));
-var _3Dface = /*#__PURE__*/ _interopRequireDefault(require("./entities/3dface"));
-var _arc = /*#__PURE__*/ _interopRequireDefault(require("./entities/arc"));
-var _attdef = /*#__PURE__*/ _interopRequireDefault(require("./entities/attdef"));
-var _circle = /*#__PURE__*/ _interopRequireDefault(require("./entities/circle"));
-var _dimension = /*#__PURE__*/ _interopRequireDefault(require("./entities/dimension"));
-var _ellipse = /*#__PURE__*/ _interopRequireDefault(require("./entities/ellipse"));
-var _insert = /*#__PURE__*/ _interopRequireDefault(require("./entities/insert"));
-var _line = /*#__PURE__*/ _interopRequireDefault(require("./entities/line"));
-var _lwpolyline = /*#__PURE__*/ _interopRequireDefault(require("./entities/lwpolyline"));
-var _mtext = /*#__PURE__*/ _interopRequireDefault(require("./entities/mtext"));
-var _point = /*#__PURE__*/ _interopRequireDefault(require("./entities/point"));
-var _polyline = /*#__PURE__*/ _interopRequireDefault(require("./entities/polyline"));
-var _solid = /*#__PURE__*/ _interopRequireDefault(require("./entities/solid"));
-var _spline = /*#__PURE__*/ _interopRequireDefault(require("./entities/spline"));
-var _text = /*#__PURE__*/ _interopRequireDefault(require("./entities/text"));
-var _loglevel = /*#__PURE__*/ _interopRequireDefault(require("loglevel"));
-function _interopRequireDefault(obj) {
+var _DxfArrayScanner = /*#__PURE__*/ _interop_require_default(require("./DxfArrayScanner"));
+var _AutoCadColorIndex = /*#__PURE__*/ _interop_require_default(require("./AutoCadColorIndex"));
+var _3dface = /*#__PURE__*/ _interop_require_default(require("./entities/3dface"));
+var _arc = /*#__PURE__*/ _interop_require_default(require("./entities/arc"));
+var _attdef = /*#__PURE__*/ _interop_require_default(require("./entities/attdef"));
+var _circle = /*#__PURE__*/ _interop_require_default(require("./entities/circle"));
+var _dimension = /*#__PURE__*/ _interop_require_default(require("./entities/dimension"));
+var _ellipse = /*#__PURE__*/ _interop_require_default(require("./entities/ellipse"));
+var _insert = /*#__PURE__*/ _interop_require_default(require("./entities/insert"));
+var _line = /*#__PURE__*/ _interop_require_default(require("./entities/line"));
+var _lwpolyline = /*#__PURE__*/ _interop_require_default(require("./entities/lwpolyline"));
+var _mtext = /*#__PURE__*/ _interop_require_default(require("./entities/mtext"));
+var _point = /*#__PURE__*/ _interop_require_default(require("./entities/point"));
+var _polyline = /*#__PURE__*/ _interop_require_default(require("./entities/polyline"));
+var _solid = /*#__PURE__*/ _interop_require_default(require("./entities/solid"));
+var _spline = /*#__PURE__*/ _interop_require_default(require("./entities/spline"));
+var _text = /*#__PURE__*/ _interop_require_default(require("./entities/text"));
+var _loglevel = /*#__PURE__*/ _interop_require_default(require("loglevel"));
+function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
 }
-var _typeof = function(obj) {
+function _type_of(obj) {
     "@swc/helpers - typeof";
     return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj;
-};
+}
 //log.setLevel('trace');
 //log.setLevel('debug');
 //log.setLevel('info');
@@ -43,7 +43,7 @@ _loglevel.default.setLevel("error");
 //log.setLevel('silent');
 function registerDefaultEntityHandlers(dxfParser) {
     // Supported entities here (some entity code is still being refactored into this flow)
-    dxfParser.registerEntityHandler(_3Dface.default);
+    dxfParser.registerEntityHandler(_3dface.default);
     dxfParser.registerEntityHandler(_arc.default);
     dxfParser.registerEntityHandler(_attdef.default);
     dxfParser.registerEntityHandler(_circle.default);
@@ -75,7 +75,7 @@ DxfParser.prototype.parseSync = function(source) {
     if (typeof source === "string") {
         return this._parse(source);
     } else {
-        console.error("Cannot read dxf source of type `" + (typeof source === "undefined" ? "undefined" : _typeof(source)));
+        console.error("Cannot read dxf source of type `" + (typeof source === "undefined" ? "undefined" : _type_of(source)));
         return null;
     }
 };
@@ -104,7 +104,7 @@ DxfParser.prototype._parse = function(dxfString) {
     var scanner, curr, dxf = {}, lastHandle = 0;
     var dxfLinesArray = dxfString.split(/\r\n|\r|\n/g);
     dxf.header = {};
-    scanner = new _dxfArrayScanner.default(dxfLinesArray);
+    scanner = new _DxfArrayScanner.default(dxfLinesArray);
     if (!scanner.hasNext()) throw Error("Empty file");
     var self = this;
     var parseAll = function parseAll() {
@@ -677,7 +677,7 @@ function debugCode(curr) {
  * Returns the truecolor value of the given AutoCad color index value
  * @return {Number} truecolor value as a number
  */ function getAcadColor(index) {
-    return _autoCadColorIndex.default[index];
+    return _AutoCadColorIndex.default[index];
 }
 var BLOCK_ANONYMOUS_FLAG = 1;
 var BLOCK_NON_CONSTANT_FLAG = 2;

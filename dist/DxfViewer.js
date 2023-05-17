@@ -8,13 +8,13 @@ Object.defineProperty(exports, "DxfViewer", {
         return DxfViewer;
     }
 });
-var _three = /*#__PURE__*/ _interopRequireWildcard(require("three"));
-var _batchingKey = require("./BatchingKey");
-var _dxfWorker = require("./DxfWorker");
-var _materialKey = require("./MaterialKey");
-var _dxfScene = require("./DxfScene");
-var _orbitControls = require("./OrbitControls");
-var _rbtree = require("./RBTree");
+var _three = /*#__PURE__*/ _interop_require_wildcard(require("three"));
+var _BatchingKey = require("./BatchingKey");
+var _DxfWorker = require("./DxfWorker");
+var _MaterialKey = require("./MaterialKey");
+var _DxfScene = require("./DxfScene");
+var _OrbitControls = require("./OrbitControls");
+var _RBTree = require("./RBTree");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
         var info = gen[key](arg);
@@ -29,7 +29,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         Promise.resolve(value).then(_next, _throw);
     }
 }
-function _asyncToGenerator(fn) {
+function _async_to_generator(fn) {
     return function() {
         var self1 = this, args = arguments;
         return new Promise(function(resolve, reject) {
@@ -44,7 +44,7 @@ function _asyncToGenerator(fn) {
         });
     };
 }
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -58,7 +58,7 @@ function _defineProperties(target, props) {
         Object.defineProperty(target, descriptor.key, descriptor);
     }
 }
-function _createClass(Constructor, protoProps, staticProps) {
+function _create_class(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
@@ -71,7 +71,7 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
@@ -102,7 +102,7 @@ function _interopRequireWildcard(obj, nodeInterop) {
     }
     return newObj;
 }
-var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
+function _ts_generator(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -196,8 +196,8 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
             done: true
         };
     }
-};
-var __values = (void 0) && (void 0).__values || function(o) {
+}
+function _ts_values(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
     if (o && typeof o.length === "number") return {
@@ -210,7 +210,7 @@ var __values = (void 0) && (void 0).__values || function(o) {
         }
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
+}
 /** Level in "message" events. */ var MessageLevel = Object.freeze({
     INFO: "info",
     WARN: "warn",
@@ -221,7 +221,7 @@ var DxfViewer = /*#__PURE__*/ function() {
     function DxfViewer(canvas) {
         var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null;
         var _this = this;
-        _classCallCheck(this, DxfViewer);
+        _class_call_check(this, DxfViewer);
         this.options = Object.create(DxfViewer.DefaultOptions);
         this.canvas = canvas;
         this.context = this.canvas.getContext("webgl", {
@@ -274,14 +274,14 @@ var DxfViewer = /*#__PURE__*/ function() {
         this.canvas.addEventListener("pointerdown", this._OnPointerEvent.bind(this));
         this.canvas.addEventListener("pointerup", this._OnPointerEvent.bind(this));
         this.Render();
-        /* Indexed by MaterialKey, value is {key, material}. */ this.materials = new _rbtree.RBTree(function(m1, m2) {
+        /* Indexed by MaterialKey, value is {key, material}. */ this.materials = new _RBTree.RBTree(function(m1, m2) {
             return m1.key.Compare(m2.key);
         });
         /* Indexed by layer name, value is Layer instance. */ this.layers = new Map();
         /* Indexed by block name, value is Block instance. */ this.blocks = new Map();
         /** Set during data loading. */ this.worker = null;
     }
-    _createClass(DxfViewer, [
+    _create_class(DxfViewer, [
         {
             /** @return {boolean} True if renderer exists. May be false in case when WebGL context is lost
      * (e.g. after wake up from sleep). In such case page should be reloaded.
@@ -344,9 +344,9 @@ var DxfViewer = /*#__PURE__*/ function() {
      */ function Load(param) {
                 var url = param.url, _param_fonts = param.fonts, fonts = _param_fonts === void 0 ? null : _param_fonts, _param_progressCbk = param.progressCbk, progressCbk = _param_progressCbk === void 0 ? null : _param_progressCbk, _param_workerFactory = param.workerFactory, workerFactory = _param_workerFactory === void 0 ? null : _param_workerFactory;
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var scene, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, layer, _iteratorNormalCompletion1, _didIteratorError1, _iteratorError1, _iterator1, _step1, batch, block, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, batch1;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 if (url === null || url === undefined) {
@@ -354,7 +354,7 @@ var DxfViewer = /*#__PURE__*/ function() {
                                 }
                                 _this._EnsureRenderer();
                                 _this.Clear();
-                                _this.worker = new _dxfWorker.DxfWorker(workerFactory ? workerFactory() : null);
+                                _this.worker = new _DxfWorker.DxfWorker(workerFactory ? workerFactory() : null);
                                 return [
                                     4,
                                     _this.worker.Load(url, fonts, _this.options, progressCbk)
@@ -395,7 +395,7 @@ var DxfViewer = /*#__PURE__*/ function() {
                                 try {
                                     /* Load all blocks on the first pass. */ for(_iterator1 = scene.batches[Symbol.iterator](); !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
                                         batch = _step1.value;
-                                        if (batch.key.blockName !== null && batch.key.geometryType !== _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE && batch.key.geometryType !== _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
+                                        if (batch.key.blockName !== null && batch.key.geometryType !== _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE && batch.key.geometryType !== _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
                                             block = _this.blocks.get(batch.key.blockName);
                                             if (!block) {
                                                 block = new Block();
@@ -732,7 +732,7 @@ var DxfViewer = /*#__PURE__*/ function() {
             key: "_CreateControls",
             value: function _CreateControls() {
                 var _this = this;
-                var controls = this.controls = new _orbitControls.OrbitControls(this.camera, this.canvas);
+                var controls = this.controls = new _OrbitControls.OrbitControls(this.camera, this.canvas);
                 controls.enableRotate = false;
                 controls.mouseButtons = {
                     LEFT: _three.MOUSE.PAN
@@ -799,7 +799,7 @@ var DxfViewer = /*#__PURE__*/ function() {
         {
             key: "_LoadBatch",
             value: function _LoadBatch(scene, batch) {
-                if (batch.key.blockName !== null && batch.key.geometryType !== _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE && batch.key.geometryType !== _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
+                if (batch.key.blockName !== null && batch.key.geometryType !== _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE && batch.key.geometryType !== _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
                     /* Block definition. */ return;
                 }
                 var objects = new Batch(this, scene, batch).CreateObjects();
@@ -833,7 +833,7 @@ var DxfViewer = /*#__PURE__*/ function() {
             key: "_GetSimpleColorMaterial",
             value: function _GetSimpleColorMaterial(color) {
                 var instanceType = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : InstanceType.NONE;
-                var key = new _materialKey.MaterialKey(instanceType, null, color, 0);
+                var key = new _MaterialKey.MaterialKey(instanceType, null, color, 0);
                 var entry = this.materials.find({
                     key: key
                 });
@@ -886,7 +886,7 @@ var DxfViewer = /*#__PURE__*/ function() {
             key: "_GetSimplePointMaterial",
             value: function _GetSimplePointMaterial(color) {
                 var instanceType = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : InstanceType.NONE;
-                var key = new _materialKey.MaterialKey(instanceType, _batchingKey.BatchingKey.GeometryType.POINTS, color, 0);
+                var key = new _MaterialKey.MaterialKey(instanceType, _BatchingKey.BatchingKey.GeometryType.POINTS, color, 0);
                 var entry = this.materials.find({
                     key: key
                 });
@@ -1018,10 +1018,10 @@ DxfViewer.DefaultOptions = {
      * invisible on current background color.
      */ blackWhiteInversion: true,
     /** Size in pixels for rasterized points (dot mark). */ pointSize: 2,
-    /** Scene generation options. */ sceneOptions: _dxfScene.DxfScene.DefaultOptions
+    /** Scene generation options. */ sceneOptions: _DxfScene.DxfScene.DefaultOptions
 };
 DxfViewer.SetupWorker = function() {
-    new _dxfWorker.DxfWorker(self, true);
+    new _DxfWorker.DxfWorker(self, true);
 };
 var InstanceType = Object.freeze({
     /** Not instanced. */ NONE: 0,
@@ -1032,15 +1032,15 @@ var InstanceType = Object.freeze({
 var Batch = /*#__PURE__*/ function() {
     "use strict";
     function Batch(viewer, scene, batch) {
-        _classCallCheck(this, Batch);
+        _class_call_check(this, Batch);
         this.viewer = viewer;
         this.key = batch.key;
         if (batch.hasOwnProperty("verticesOffset")) {
             var verticesArray = new Float32Array(scene.vertices, batch.verticesOffset * Float32Array.BYTES_PER_ELEMENT, batch.verticesSize);
-            if (this.key.geometryType !== _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE || scene.pointShapeHasDot) {
+            if (this.key.geometryType !== _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE || scene.pointShapeHasDot) {
                 this.vertices = new _three.BufferAttribute(verticesArray, 2);
             }
-            if (this.key.geometryType === _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
+            if (this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
                 this.transforms = new _three.InstancedBufferAttribute(verticesArray, 2);
             }
         }
@@ -1080,7 +1080,7 @@ var Batch = /*#__PURE__*/ function() {
             this.transforms0 = new _three.InterleavedBufferAttribute(buf, 3, 0);
             this.transforms1 = new _three.InterleavedBufferAttribute(buf, 3, 3);
         }
-        if (this.key.geometryType === _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE || this.key.geometryType === _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
+        if (this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE || this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
             var layer = this.viewer.layers.get(this.key.layerName);
             if (layer) {
                 this.layerColor = layer.color;
@@ -1089,14 +1089,14 @@ var Batch = /*#__PURE__*/ function() {
             }
         }
     }
-    _createClass(Batch, [
+    _create_class(Batch, [
         {
             key: "GetInstanceType",
             value: function GetInstanceType() {
                 switch(this.key.geometryType){
-                    case _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE:
+                    case _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE:
                         return InstanceType.FULL;
-                    case _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE:
+                    case _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE:
                         return InstanceType.POINT;
                     default:
                         return InstanceType.NONE;
@@ -1110,11 +1110,11 @@ var Batch = /*#__PURE__*/ function() {
      */ function CreateObjects() {
                 var instanceBatch;
                 var _arguments = arguments;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             instanceBatch = _arguments.length > 0 && _arguments[0] !== void 0 ? _arguments[0] : null;
-                            if (!(this.key.geometryType === _batchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE || this.key.geometryType === _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE)) return [
+                            if (!(this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.BLOCK_INSTANCE || this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE)) return [
                                 3,
                                 2
                             ];
@@ -1123,7 +1123,7 @@ var Batch = /*#__PURE__*/ function() {
                             }
                             return [
                                 5,
-                                __values(this._CreateBlockInstanceObjects())
+                                _ts_values(this._CreateBlockInstanceObjects())
                             ];
                         case 1:
                             _state.sent();
@@ -1133,7 +1133,7 @@ var Batch = /*#__PURE__*/ function() {
                         case 2:
                             return [
                                 5,
-                                __values(this._CreateObjects(instanceBatch))
+                                _ts_values(this._CreateObjects(instanceBatch))
                             ];
                         case 3:
                             _state.sent();
@@ -1148,7 +1148,7 @@ var Batch = /*#__PURE__*/ function() {
             key: "_CreateObjects",
             value: function _CreateObjects(instanceBatch) {
                 var CreateObject, color, materialFactory, _instanceBatch_GetInstanceType, material, objConstructor, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, chunk, err;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             CreateObject = function CreateObject(vertices, indices) {
@@ -1164,19 +1164,19 @@ var Batch = /*#__PURE__*/ function() {
                                 return obj;
                             };
                             color = instanceBatch ? instanceBatch._GetInstanceColor(this.key.color) : this.key.color;
-                            materialFactory = this.key.geometryType === _batchingKey.BatchingKey.GeometryType.POINTS || this.key.geometryType === _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE ? this.viewer._GetSimplePointMaterial : this.viewer._GetSimpleColorMaterial;
+                            materialFactory = this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.POINTS || this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE ? this.viewer._GetSimplePointMaterial : this.viewer._GetSimpleColorMaterial;
                             material = materialFactory.call(this.viewer, this.viewer._TransformColor(color), (_instanceBatch_GetInstanceType = instanceBatch === null || instanceBatch === void 0 ? void 0 : instanceBatch.GetInstanceType()) !== null && _instanceBatch_GetInstanceType !== void 0 ? _instanceBatch_GetInstanceType : InstanceType.NONE);
                             switch(this.key.geometryType){
-                                case _batchingKey.BatchingKey.GeometryType.POINTS:
-                                /* This method also called for creating dots for shaped point instances. */ case _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE:
+                                case _BatchingKey.BatchingKey.GeometryType.POINTS:
+                                /* This method also called for creating dots for shaped point instances. */ case _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE:
                                     objConstructor = _three.Points;
                                     break;
-                                case _batchingKey.BatchingKey.GeometryType.LINES:
-                                case _batchingKey.BatchingKey.GeometryType.INDEXED_LINES:
+                                case _BatchingKey.BatchingKey.GeometryType.LINES:
+                                case _BatchingKey.BatchingKey.GeometryType.INDEXED_LINES:
                                     objConstructor = _three.LineSegments;
                                     break;
-                                case _batchingKey.BatchingKey.GeometryType.TRIANGLES:
-                                case _batchingKey.BatchingKey.GeometryType.INDEXED_TRIANGLES:
+                                case _BatchingKey.BatchingKey.GeometryType.TRIANGLES:
+                                case _BatchingKey.BatchingKey.GeometryType.INDEXED_TRIANGLES:
                                     objConstructor = _three.Mesh;
                                     break;
                                 default:
@@ -1271,7 +1271,7 @@ var Batch = /*#__PURE__*/ function() {
                 if (!geometry.isInstancedBufferGeometry) {
                     throw new Error("InstancedBufferGeometry expected");
                 }
-                if (this.key.geometryType === _batchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
+                if (this.key.geometryType === _BatchingKey.BatchingKey.GeometryType.POINT_INSTANCE) {
                     geometry.setAttribute("instanceTransform", this.transforms);
                 } else {
                     geometry.setAttribute("instanceTransform0", this.transforms0);
@@ -1283,7 +1283,7 @@ var Batch = /*#__PURE__*/ function() {
             key: "_CreateBlockInstanceObjects",
             value: function _CreateBlockInstanceObjects() {
                 var block, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, batch, err;
-                return __generator(this, function(_state) {
+                return _ts_generator(this, function(_state) {
                     switch(_state.label){
                         case 0:
                             block = this.viewer.blocks.get(this.key.blockName);
@@ -1311,7 +1311,7 @@ var Batch = /*#__PURE__*/ function() {
                             batch = _step.value;
                             return [
                                 5,
-                                __values(batch.CreateObjects(this))
+                                _ts_values(batch.CreateObjects(this))
                             ];
                         case 3:
                             _state.sent();
@@ -1355,7 +1355,7 @@ var Batch = /*#__PURE__*/ function() {
                             ];
                             /* Dots for point shapes. */ return [
                                 5,
-                                __values(this._CreateObjects())
+                                _ts_values(this._CreateObjects())
                             ];
                         case 9:
                             _state.sent();
@@ -1374,9 +1374,9 @@ var Batch = /*#__PURE__*/ function() {
      * @return {number} RGB color value for a block instance.
      */ key: "_GetInstanceColor",
             value: function _GetInstanceColor(defColor) {
-                if (defColor === _dxfScene.ColorCode.BY_BLOCK) {
+                if (defColor === _DxfScene.ColorCode.BY_BLOCK) {
                     return this.key.color;
-                } else if (defColor === _dxfScene.ColorCode.BY_LAYER) {
+                } else if (defColor === _DxfScene.ColorCode.BY_LAYER) {
                     return this.layerColor;
                 } else {
                     return defColor;
@@ -1389,12 +1389,12 @@ var Batch = /*#__PURE__*/ function() {
 var Layer = /*#__PURE__*/ function() {
     "use strict";
     function Layer(name, color) {
-        _classCallCheck(this, Layer);
+        _class_call_check(this, Layer);
         this.name = name;
         this.color = color;
         this.objects = [];
     }
-    _createClass(Layer, [
+    _create_class(Layer, [
         {
             key: "PushObject",
             value: function PushObject(obj) {
@@ -1433,10 +1433,10 @@ var Layer = /*#__PURE__*/ function() {
 var Block = /*#__PURE__*/ function() {
     "use strict";
     function Block() {
-        _classCallCheck(this, Block);
+        _class_call_check(this, Block);
         this.batches = [];
     }
-    _createClass(Block, [
+    _create_class(Block, [
         {
             /** @param batch {Batch} */ key: "PushBatch",
             value: function PushBatch(batch) {

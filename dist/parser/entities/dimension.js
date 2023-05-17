@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return EntityParser;
     }
 });
-var _parseHelpers = /*#__PURE__*/ _interopRequireWildcard(require("../ParseHelpers"));
+var _ParseHelpers = /*#__PURE__*/ _interop_require_wildcard(require("../ParseHelpers"));
 function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function") return null;
     var cacheBabelInterop = new WeakMap();
@@ -17,7 +17,7 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
@@ -63,25 +63,25 @@ EntityParser.prototype.parseEntity = function(scanner, curr) {
                 entity.block = curr.value;
                 break;
             case 10:
-                entity.anchorPoint = _parseHelpers.parsePoint(scanner);
+                entity.anchorPoint = _ParseHelpers.parsePoint(scanner);
                 break;
             case 11:
-                entity.middleOfText = _parseHelpers.parsePoint(scanner);
+                entity.middleOfText = _ParseHelpers.parsePoint(scanner);
                 break;
             case 12:
-                entity.insertionPoint = _parseHelpers.parsePoint(scanner);
+                entity.insertionPoint = _ParseHelpers.parsePoint(scanner);
                 break;
             case 13:
-                entity.linearOrAngularPoint1 = _parseHelpers.parsePoint(scanner);
+                entity.linearOrAngularPoint1 = _ParseHelpers.parsePoint(scanner);
                 break;
             case 14:
-                entity.linearOrAngularPoint2 = _parseHelpers.parsePoint(scanner);
+                entity.linearOrAngularPoint2 = _ParseHelpers.parsePoint(scanner);
                 break;
             case 15:
-                entity.diameterOrRadiusPoint = _parseHelpers.parsePoint(scanner);
+                entity.diameterOrRadiusPoint = _ParseHelpers.parsePoint(scanner);
                 break;
             case 16:
-                entity.arcPoint = _parseHelpers.parsePoint(scanner);
+                entity.arcPoint = _ParseHelpers.parsePoint(scanner);
                 break;
             case 70:
                 entity.dimensionType = curr.value;
@@ -99,7 +99,7 @@ EntityParser.prototype.parseEntity = function(scanner, curr) {
                 entity.angle = curr.value;
                 break;
             default:
-                _parseHelpers.checkCommonEntityProperties(entity, curr);
+                _ParseHelpers.checkCommonEntityProperties(entity, curr);
                 break;
         }
         curr = scanner.next();

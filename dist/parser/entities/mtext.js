@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return EntityParser;
     }
 });
-var _parseHelpers = /*#__PURE__*/ _interopRequireWildcard(require("../ParseHelpers"));
+var _ParseHelpers = /*#__PURE__*/ _interop_require_wildcard(require("../ParseHelpers"));
 function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function") return null;
     var cacheBabelInterop = new WeakMap();
@@ -17,7 +17,7 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
@@ -63,10 +63,10 @@ EntityParser.prototype.parseEntity = function(scanner, curr) {
                 entity.text ? entity.text += curr.value : entity.text = curr.value;
                 break;
             case 10:
-                entity.position = _parseHelpers.parsePoint(scanner);
+                entity.position = _ParseHelpers.parsePoint(scanner);
                 break;
             case 11:
-                entity.direction = _parseHelpers.parsePoint(scanner);
+                entity.direction = _ParseHelpers.parsePoint(scanner);
                 break;
             case 40:
                 //Note: this is the text height
@@ -88,10 +88,10 @@ EntityParser.prototype.parseEntity = function(scanner, curr) {
                 entity.drawingDirection = curr.value;
                 break;
             case 101:
-                _parseHelpers.skipEmbeddedObject(scanner);
+                _ParseHelpers.skipEmbeddedObject(scanner);
                 break;
             default:
-                _parseHelpers.checkCommonEntityProperties(entity, curr);
+                _ParseHelpers.checkCommonEntityProperties(entity, curr);
                 break;
         }
         curr = scanner.next();

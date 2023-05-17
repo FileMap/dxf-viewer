@@ -22,14 +22,14 @@ _export(exports, {
         return checkCommonEntityProperties;
     }
 });
-var _autoCadColorIndex = /*#__PURE__*/ _interopRequireDefault(require("./AutoCadColorIndex"));
-function _interopRequireDefault(obj) {
+var _AutoCadColorIndex = /*#__PURE__*/ _interop_require_default(require("./AutoCadColorIndex"));
+function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
 }
 function getAcadColor(index) {
-    return _autoCadColorIndex.default[index];
+    return _AutoCadColorIndex.default[index];
 }
 function parsePoint(scanner) {
     var point = {};

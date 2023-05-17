@@ -19,7 +19,7 @@ _export(exports, {
         return NativeArray;
     }
 });
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -33,7 +33,7 @@ function _defineProperties(target, props) {
         Object.defineProperty(target, descriptor.key, descriptor);
     }
 }
-function _createClass(Constructor, protoProps, staticProps) {
+function _create_class(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
@@ -42,13 +42,13 @@ var DynamicBuffer = /*#__PURE__*/ function() {
     "use strict";
     function DynamicBuffer(type) {
         var initialCapacity = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 16;
-        _classCallCheck(this, DynamicBuffer);
+        _class_call_check(this, DynamicBuffer);
         this.type = type;
         this.capacity = initialCapacity;
         this.size = 0;
         this.buffer = new (NativeArray(type))(initialCapacity);
     }
-    _createClass(DynamicBuffer, [
+    _create_class(DynamicBuffer, [
         {
             key: "GetSize",
             value: function GetSize() {

@@ -8,7 +8,7 @@ Object.defineProperty(exports, "default", {
         return EntityParser;
     }
 });
-var _parseHelpers = /*#__PURE__*/ _interopRequireWildcard(require("../ParseHelpers"));
+var _ParseHelpers = /*#__PURE__*/ _interop_require_wildcard(require("../ParseHelpers"));
 function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function") return null;
     var cacheBabelInterop = new WeakMap();
@@ -17,7 +17,7 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
@@ -60,18 +60,18 @@ EntityParser.prototype.parseEntity = function(scanner, curr) {
         if (curr.code === 0) break;
         switch(curr.code){
             case 10:
-                entity.position = _parseHelpers.parsePoint(scanner);
+                entity.position = _ParseHelpers.parsePoint(scanner);
                 break;
             case 39:
                 entity.thickness = curr.value;
                 break;
             case 210:
-                entity.extrusionDirection = _parseHelpers.parsePoint(scanner);
+                entity.extrusionDirection = _ParseHelpers.parsePoint(scanner);
                 break;
             case 100:
                 break;
             default:
-                _parseHelpers.checkCommonEntityProperties(entity, curr);
+                _ParseHelpers.checkCommonEntityProperties(entity, curr);
                 break;
         }
         curr = scanner.next();

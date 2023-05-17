@@ -10,11 +10,11 @@ function _export(target, all) {
 }
 _export(exports, {
     DxfFetcher: function() {
-        return _dxfFetcher.DxfFetcher;
+        return _DxfFetcher.DxfFetcher;
     },
     DxfViewer: function() {
-        return _dxfViewer.DxfViewer;
+        return _DxfViewer.DxfViewer;
     }
 });
-var _dxfFetcher = require("./DxfFetcher");
-var _dxfViewer = require("./DxfViewer");
+var _DxfFetcher = require("./DxfFetcher");
+var _DxfViewer = require("./DxfViewer");

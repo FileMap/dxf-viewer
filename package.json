@@ -22,14 +22,13 @@
         "CONTRIBUTORS"
     ],
     "scripts": {
-        "build": "swc ./src -d ./dist"
+        "build": "swc ./src -d ./dist",
+        "install": "yarn run build"
     },
     "dependencies": {
         "loglevel": "^1.8.0",
         "opentype.js": "^1.3.4",
-        "three": "^0.137.5"
-    },
-    "devDependencies": {
+        "three": "^0.137.5",
         "@swc/cli": "^0.1.59",
         "@swc/core": "^1.3.24"
     }

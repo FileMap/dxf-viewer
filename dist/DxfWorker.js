@@ -8,9 +8,9 @@ Object.defineProperty(exports, "DxfWorker", {
         return DxfWorker;
     }
 });
-var _dxfFetcher = require("./DxfFetcher");
-var _dxfScene = require("./DxfScene");
-var _opentypeJs = /*#__PURE__*/ _interopRequireDefault(require("opentype.js"));
+var _DxfFetcher = require("./DxfFetcher");
+var _DxfScene = require("./DxfScene");
+var _opentype = /*#__PURE__*/ _interop_require_default(require("opentype.js"));
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
         var info = gen[key](arg);
@@ -25,7 +25,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
         Promise.resolve(value).then(_next, _throw);
     }
 }
-function _asyncToGenerator(fn) {
+function _async_to_generator(fn) {
     return function() {
         var self = this, args = arguments;
         return new Promise(function(resolve, reject) {
@@ -40,7 +40,7 @@ function _asyncToGenerator(fn) {
         });
     };
 }
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -54,17 +54,17 @@ function _defineProperties(target, props) {
         Object.defineProperty(target, descriptor.key, descriptor);
     }
 }
-function _createClass(Constructor, protoProps, staticProps) {
+function _create_class(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
 }
-function _interopRequireDefault(obj) {
+function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
     };
 }
-var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
+function _ts_generator(thisArg, body) {
     var f, y, t, g, _ = {
         label: 0,
         sent: function() {
@@ -158,13 +158,13 @@ var __generator = (void 0) && (void 0).__generator || function(thisArg, body) {
             done: true
         };
     }
-};
+}
 var MSG_SIGNATURE = "DxfWorkerMsg";
 var DxfWorker = /*#__PURE__*/ function() {
     "use strict";
     function DxfWorker(worker) {
         var isWorker = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
-        _classCallCheck(this, DxfWorker);
+        _class_call_check(this, DxfWorker);
         this.worker = worker;
         if (isWorker) {
             worker.onmessage = this._ProcessRequest.bind(this);
@@ -176,7 +176,7 @@ var DxfWorker = /*#__PURE__*/ function() {
             this.progressCbk = null;
         }
     }
-    _createClass(DxfWorker, [
+    _create_class(DxfWorker, [
         {
             key: "Load",
             value: /**
@@ -186,8 +186,8 @@ var DxfWorker = /*#__PURE__*/ function() {
      * @param progressCbk {Function?} (phase, processedSize, totalSize)
      */ function Load(url, fonts, options, progressCbk) {
                 var _this = this;
-                return _asyncToGenerator(function() {
-                    return __generator(this, function(_state) {
+                return _async_to_generator(function() {
+                    return _ts_generator(this, function(_state) {
                         if (_this.worker) {
                             return [
                                 2,
@@ -215,8 +215,8 @@ var DxfWorker = /*#__PURE__*/ function() {
             value: function Destroy() {
                 var noWait = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
                 var _this = this;
-                return _asyncToGenerator(function() {
-                    return __generator(this, function(_state) {
+                return _async_to_generator(function() {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 if (!_this.worker) return [
@@ -250,9 +250,9 @@ var DxfWorker = /*#__PURE__*/ function() {
             key: "_ProcessRequest",
             value: function _ProcessRequest(event) {
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var msg, resp, transfers, error;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 msg = event.data;
@@ -313,9 +313,9 @@ var DxfWorker = /*#__PURE__*/ function() {
             key: "_ProcessRequestMessage",
             value: function _ProcessRequestMessage(type, data, transfers, seq) {
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var scene;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 switch(type){
@@ -370,9 +370,9 @@ var DxfWorker = /*#__PURE__*/ function() {
             key: "_ProcessResponse",
             value: function _ProcessResponse(event) {
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var msg, seq, req, data;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         msg = event.data;
                         if (msg.signature !== MSG_SIGNATURE) {
                             console.log("Message with bad signature", msg);
@@ -412,9 +412,9 @@ var DxfWorker = /*#__PURE__*/ function() {
             key: "_OnError",
             value: function _OnError(error) {
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var reqs;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         console.error("DxfWorker worker error", error);
                         reqs = Array.from(_this.requests.values);
                         _this.requests.clear();
@@ -433,9 +433,9 @@ var DxfWorker = /*#__PURE__*/ function() {
             value: function _SendRequest(type) {
                 var data = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null, progressCbk = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : null;
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var seq, req;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 seq = _this.reqSeq++;
@@ -480,9 +480,9 @@ var DxfWorker = /*#__PURE__*/ function() {
             key: "_Load",
             value: /** @return {Object} DxfScene serialized scene. */ function _Load(url, fonts, options, progressCbk) {
                 var _this = this;
-                return _asyncToGenerator(function() {
+                return _async_to_generator(function() {
                     var fontFetchers, dxf, dxfScene;
-                    return __generator(this, function(_state) {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 if (fonts) {
@@ -492,14 +492,14 @@ var DxfWorker = /*#__PURE__*/ function() {
                                 }
                                 return [
                                     4,
-                                    new _dxfFetcher.DxfFetcher(url).Fetch(progressCbk)
+                                    new _DxfFetcher.DxfFetcher(url).Fetch(progressCbk)
                                 ];
                             case 1:
                                 dxf = _state.sent();
                                 if (progressCbk) {
                                     progressCbk("prepare", 0, null);
                                 }
-                                dxfScene = new _dxfScene.DxfScene(options);
+                                dxfScene = new _DxfScene.DxfScene(options);
                                 return [
                                     4,
                                     dxfScene.Build(dxf, fontFetchers)
@@ -519,9 +519,9 @@ var DxfWorker = /*#__PURE__*/ function() {
             key: "_CreateFontFetchers",
             value: function _CreateFontFetchers(urls, progressCbk) {
                 var CreateFetcher = function CreateFetcher(url) {
-                    return /*#__PURE__*/ _asyncToGenerator(function() {
+                    return /*#__PURE__*/ _async_to_generator(function() {
                         var data;
-                        return __generator(this, function(_state) {
+                        return _ts_generator(this, function(_state) {
                             switch(_state.label){
                                 case 0:
                                     if (progressCbk) {
@@ -540,7 +540,7 @@ var DxfWorker = /*#__PURE__*/ function() {
                                     }
                                     return [
                                         2,
-                                        _opentypeJs.default.parse(data)
+                                        _opentype.default.parse(data)
                                     ];
                             }
                         });
@@ -602,7 +602,7 @@ DxfWorker.Request = /*#__PURE__*/ function() {
     "use strict";
     function _class(seq, progressCbk) {
         var _this = this;
-        _classCallCheck(this, _class);
+        _class_call_check(this, _class);
         this.seq = seq;
         this.progressCbk = progressCbk;
         this.promise = new Promise(function(resolve, reject) {
@@ -610,13 +610,13 @@ DxfWorker.Request = /*#__PURE__*/ function() {
             _this._Reject = reject;
         });
     }
-    _createClass(_class, [
+    _create_class(_class, [
         {
             key: "GetResponse",
             value: function GetResponse() {
                 var _this = this;
-                return _asyncToGenerator(function() {
-                    return __generator(this, function(_state) {
+                return _async_to_generator(function() {
+                    return _ts_generator(this, function(_state) {
                         switch(_state.label){
                             case 0:
                                 return [

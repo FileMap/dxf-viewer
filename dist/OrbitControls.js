@@ -18,7 +18,7 @@ _export(exports, {
         return MapControls;
     }
 });
-var _three = /*#__PURE__*/ _interopRequireWildcard(require("three"));
+var _three = /*#__PURE__*/ _interop_require_wildcard(require("three"));
 function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function") return null;
     var cacheBabelInterop = new WeakMap();
@@ -27,7 +27,7 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interopRequireWildcard(obj, nodeInterop) {
+function _interop_require_wildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }

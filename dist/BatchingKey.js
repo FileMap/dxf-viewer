@@ -16,7 +16,7 @@ _export(exports, {
         return CompareValues;
     }
 });
-function _classCallCheck(instance, Constructor) {
+function _class_call_check(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
     }
@@ -30,7 +30,7 @@ function _defineProperties(target, props) {
         Object.defineProperty(target, descriptor.key, descriptor);
     }
 }
-function _createClass(Constructor, protoProps, staticProps) {
+function _create_class(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
@@ -38,14 +38,14 @@ function _createClass(Constructor, protoProps, staticProps) {
 var BatchingKey = /*#__PURE__*/ function() {
     "use strict";
     function BatchingKey(layerName, blockName, geometryType, color, lineType) {
-        _classCallCheck(this, BatchingKey);
+        _class_call_check(this, BatchingKey);
         this.layerName = layerName !== null && layerName !== void 0 ? layerName : null;
         this.blockName = blockName !== null && blockName !== void 0 ? blockName : null;
         this.geometryType = geometryType !== null && geometryType !== void 0 ? geometryType : null;
         this.color = color;
         this.lineType = lineType !== null && lineType !== void 0 ? lineType : null;
     }
-    _createClass(BatchingKey, [
+    _create_class(BatchingKey, [
         {
             /** Comparator function. Fields lexical order corresponds to the constructor arguments order.
      * Null values are always first.
